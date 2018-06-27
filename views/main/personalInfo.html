@@ -1,0 +1,506 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no" />
+    <title>信息管理</title>
+    <link href="../static/back/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/back/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/back/css/plugins/chosen/chosen.css" rel="stylesheet">
+
+    <!-- 切换按钮 -->
+    <link href="../static/back/css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link href="../static/back/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="../static/back/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="../static/back/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="../static/back/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="../static/back/css/style.css?v=4.1.0" rel="stylesheet">
+    <!-- 通知 -->
+    <link href="../static/back/css/animate.css" rel="stylesheet">
+    <link href="../static/back/css/style.css?v=4.1.0" rel="stylesheet">
+    <script src="../static/back/js/jquery.min.js"></script>
+
+    <!-- loading加载 -->
+    <link rel="stylesheet" type="text/css" href="../static/plugins/loading/loading01/assets/loaders.css" />
+    <!--[if IE]>
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- 提示框 -->
+    <link rel="stylesheet" href="../static/back/css/sweet-alert.css">
+    <link rel="stylesheet" href="../static/back/css/animate.css">
+    <script src="../static/back/js/sweet-alert.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            .address_hot{
+                background-color: #FFFFFF; font-size: 12px; width: 225px;
+            }
+        }
+        @media screen and (max-width: 1024px) {
+            .address_hot{
+                background-color: #FFFFFF; font-size: 12px; width: 425px;
+            }
+        }
+        .form-group{
+            margin-bottom:5px;
+        }
+    </style>
+
+</head>
+
+<body class="gray-bg">
+<input type="hidden" value="{{ ._xsrf}}" id="_xsrf">
+<div id="loading" style="display: none" class="loading-wrap">
+    <div class="loader" >
+        {{/*<div class="la-ball-clip-rotate-multiple la-3x">
+            <div></div>
+            <div></div>
+        </div>*/}}
+        <div class="la-fire la-3x">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div style="color: #fff;font-size: 16px;margin-top: 15px;">数据交互中...</div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="ibox float-e-margins">
+                <form class="form-horizontal m-t" id="signupForm">
+                    <div class="ibox-content" style="padding:15px 15% 65px 15%;border-color:#fff;">
+                        <input type="hidden" name="id" value="{{ .user.Id}}"/>
+                        <input type="hidden" name="uid" value="{{ .user.Uid}}"/>
+                        <h4>账号</h4>
+                        <div class="form-group" >
+                            <input value="{{ .user.Account}}" onkeyup="this.value = this.value.replace(/[^0-9a-zA-Z\-]/g,'');validate(this.value);" id="account" name="account" maxlength="15" placeholder="确定后将不可更改,可用于登录" class="form-control" type="text">
+                            <span id="tip" style="float: right;margin-top: -20px;margin-right:6px;" class="help-block m-b-none"></span>
+                        </div>
+                        <h4>姓名:</h4>
+                        <div class="form-group" >
+                            <input id="name" value="{{ .user.Name}}" name="name" maxlength="11" class="form-control" type="text" aria-required="true" aria-invalid="false" class="valid">
+                        </div>
+                        <h4>性别:</h4>
+                        <div class="form-group" >
+                            <div class="radio radio-info radio-inline">
+                                <input type="radio" onfocus = 'this.blur()' id="inlineRadio1"   value="1" name="gender"  >
+                                <label for="inlineRadio1"><span style="font-size:14px;">男生</span></label>
+                            </div>
+                            <div class="radio radio-danger radio-inline">
+                                <input type="radio" onfocus = 'this.blur()' id="inlineRadio2"  value="2" name="gender">
+                                <label for="inlineRadio2"><span style="font-size:14px;">女生</span></label>
+                            </div>
+                        </div>
+                        <!-- <h4>昵称:</h4>
+                        <div class="form-group" >
+                            <input id="username" max-length="11" name="anothername" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                        </div> -->
+                        <h4>输入密码:</h4>
+                        <div class="form-group" >
+                            <input onfocus="clearTip('#tipPass')" id="password" value="{{ .user.Password}}" name="password" placeholder="请输入至少5个字符密码" maxlength="15" class="form-control" type="password">
+                            <span id="tipPass" style="float: right;margin-top: -20px;margin-right:6px;" class="help-block m-b-none"></span>
+                        </div>
+                        <h4>确认密码:</h4>
+                        <div class="form-group" >
+                            <input id="confirm_password" onfocus="clearTip('#tipConfirm')" value="{{ .user.Password}}" name="confirm_password" maxlength="15" class="form-control" type="password">
+                            <span id="tipConfirm" style="float: right;margin-top: -20px;margin-right:6px;" class="help-block m-b-none"></span>
+                        </div>
+                        <h4>出生年月日:</h4>
+                        <div class="form-group" id="data_1">
+                            <div class="input-group date" id="datePick">
+                                <span class="input-group-addon" style="height:30px;"><i class="fa fa-calendar"></i></span>
+                                <input type="text" disabled="disabled" id="birthday"  class="form-control" value="{{ .user.Birthday}}">
+                            </div>
+                        </div>
+
+                        <h4>所在城市:</h4>
+                        <div class="form-group" >
+                            <!-- <input id="city" name="address" maxlength="15" class="form-control" type="text"> -->
+                            <div>
+                                <input type="text" class="form-control" id="homecity_name" value="{{ .user.City}}" name="city" mod="address|notice" mod_address_source="hotel" mod_address_suggest="@Beijing|北京|53@Shanghai|上海|321@Shenzhen|深圳|91@Guangzhou|广州|80@Qingdao|青岛|292@Chengdu|成都|324@Hangzhou|杭州|383@Wuhan|武汉|192@Tianjin|天津|343@Dalian|大连|248@Xiamen|厦门|61@Chongqing|重庆|394@" mod_address_reference="cityid" mod_notice_tip="可输入中文/拼音" />
+                            </div>
+                            <div id="jsContainer" class="jsContainer" style="height:0">
+                                <div id="tuna_alert" style="display:none;position:absolute;z-index:999;overflow:hidden;"></div>
+                                <div id="tuna_jmpinfo" style="visibility:hidden;position:absolute;z-index:120;"></div>
+                            </div>
+                        </div>
+                        <h4>地址:</h4>
+                        <div class="form-group" >
+                            <input id="address" value="{{ .user.Address}}"  name="address" class="form-control" type="text" maxlength="55">
+                        </div>
+                        <h4>个性签名:</h4>
+                        <div class="form-group" >
+                            <input id="signature" value="{{ .user.Signature}}"  name="signature" class="form-control" type="text" maxlength="225">
+                        </div>
+                        <h4>手机:</h4>
+                        <div class="form-group" >
+                            <input id="phone" value="{{ .user.Phone}}" onkeyup="this.value = this.value.replace(/[^0-9\-]/g,'');" name="phone" class="form-control" type="text" maxlength="11">
+                        </div>
+                        <h4>邮箱:</h4>
+                        <div class="form-group" >
+                            <input id="email" value="{{ .user.Mail}}" disabled style="width: 90%" onkeyup="this.value = this.value.replace(/[^0-9a-zA-Z.@\-]/g,'');" name="mail" placeholder="请输入邮箱地址" class="form-control" type="email">
+                            <button style="float: right;margin-top: -30px" class="btn btn-primary" id="cMail" type="button">更换邮箱</button>
+                        </div>
+                        <div class="form-group justified" >
+                            <button style="width:212px;margin:0 auto;display:block;margin-top:15px;" id="submitInfo" class="btn btn-outline btn-info" type="button">提交信息</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h3 class="modal-title" id="myModalLabel">
+                    更换邮箱<span id="tipMail" style="color: red;padding-left: 15px;font-size: 10px"></span>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" autofocus class="form-control" id="alertMail"  maxlength="25" placeholder="输入新邮箱">
+                        <br>
+                        <input type="text" style="width: 20%;text-align: center" class="form-control" id="mailCode" maxlength="6" placeholder="6位数字">
+                        <button id="getCode" style="margin-top: -30px;margin-left: 125px;font-size: 14px" type="button" class="btn outline btn-info">
+                            获取验证码
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="submitMail" style="display: none" type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $(function () {
+
+        var Acc = {{ .user.Account}};
+        var Name = {{ .user.Name}};
+        var Mail = {{ .user.Mail}};
+        var Pass = {{ .user.Password}}
+        var Gender = {{ .user.Gender}};
+        var Birthday = {{ .user.Birthday}};
+        var City = {{ .user.City}};
+        var Address = {{ .user.Address}};
+        var Signature = {{ .user.Signature}};
+        var Phone = {{ .user.Phone}};
+        if(Acc){
+            $('#account').attr("disabled","true");
+        }
+        if(Gender===1){
+            $('#inlineRadio1').attr("checked","checked");
+        }else if(Gender===2){
+            $('#inlineRadio2').attr("checked","checked");
+        }
+
+        var flag = isMobile();
+        if(flag){
+            $('.address_hot').css('width','225px');
+        }else{
+            $('.address_hot').css('width','625px');
+        }
+
+        //邮箱操作-----------------------------------------开始
+        $('#myModal').modal({
+            show:false,
+            //backdrop:'static'
+        });
+        $('#cMail').on('click',function () {
+            $('#myModal').modal('show');
+            $('#tipMail').html("");
+            $('#alertMail').val("");
+            $("#mailCode").val("");
+            $('#getCode').html("获取验证码");
+        });
+
+        $('#alertMail').on("focus",function () {
+            $('#tipMail').html("");
+        });
+
+        $('#getCode').on('click',function () {
+
+            var mail = $('#alertMail').val().trim();
+            if(!mail){
+                $('#tipMail').html("邮箱地址不能为空！");
+                return
+            }
+            var validateReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var t = mail.indexOf('.com');
+            if(!validateReg.test(mail)||t<=0){
+                $("#tipMail").html('<span class="tip_warning">邮箱格式不正确</span>').fadeIn(100);
+                return false;
+            }
+            var txt = $(this).html().trim();
+            if(txt==="获取验证码"){
+                $.post("/user/userInfo",{_xsrf:$('#_xsrf').val(), type:"mailCode",mail:mail},function (data) {
+                    if(data.code===1){
+                        $('#tipMail').html("<span style='color: green'>验证码已发送</span>");
+                        $('#submitMail').show();
+                        var i = 61;
+                        interval = setInterval(function () {
+                            if(i===55){
+                                $('#tipMail').html("");
+                            }
+                            i--;
+                            $('#getCode').html("重新获取("+i+")");
+                            if(i===0){
+                                $('#getCode').html("获取验证码");
+                                window.clearInterval(interval);
+                            }
+                        },800);
+                    }else{
+                        $('#tipMail').html(data.msg);
+                    }
+                });
+            }
+        });
+
+        $('#submitMail').on('click',function () {
+
+            var mail = $('#alertMail').val().trim();
+            var code = $('#mailCode').val().trim();
+            if(!mail){
+                $('#tipMail').html("邮箱地址不能为空！");
+                return
+            }
+            var validateReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var t = mail.indexOf('.com');
+            if(!validateReg.test(mail)||t<=0){
+                $("#tipMail").html('<span class="tip_warning">邮箱格式不正确</span>').fadeIn(100);
+                return false;
+            }
+            if(!code){
+                $('#tipMail').html("验证码不能为空！");
+                return
+            }
+
+            $.post("/user/userInfo",{_xsrf:$('#_xsrf').val(), type:"updateMail",mail:mail,code:code},function (data) {
+                if(data.code===1){
+                    //swal(data.msg,"Success","success");
+                    $('#tipMail').html("<span style='color: green'>"+data.msg+"(3秒后关闭窗口)</span>");
+                    $('#email').val(mail);
+                    setTimeout(function () {
+                        $('#myModal').modal("hide");
+                    },2500)
+                }else{
+                    //swal(data.msg,"Failure","error");
+                    $('#tipMail').html(data.msg);
+                }
+            })
+        });
+        //邮箱操作-----------------------------------------结束
+        $(':radio').each(function () {
+            $(this).on('click',function () {
+               if($(this).val()==="1"){
+                   Gender = 1;
+               }else{
+                   Gender = 2;
+               }
+            });
+        });
+
+        $('#submitInfo').on('click',function () {
+           var account = $('#account').val().trim();
+           var name = $('#name').val().trim();
+           var gender = Gender;
+           var password1 = $('#password').val().trim();
+           var password2 = $('#confirm_password').val().trim();
+           if(!password1){
+               $('#tipPass').html('<i style="color:#a94442 " class="fa fa-times-circle">&nbsp;密码不能为空！</i>');
+               return
+           }
+            if(!password2){
+                $('#tipConfirm').html('<i style="color:#a94442 " class="fa fa-times-circle">&nbsp;密码不能为空！</i>');
+                return
+            }
+            if(password1.length<8){
+                $('#tipPass').html('<i style="color:#a94442 " class="fa fa-times-circle">&nbsp;密码长度至少为8个字符</i>');
+                return
+            }
+            if (password1!==password2){
+                $('#tipPass').html('<i style="color:#a94442 " class="fa fa-times-circle">&nbsp;两次密码不一致！</i>');
+                $('#tipConfirm').html('<i style="color:#a94442 " class="fa fa-times-circle">&nbsp;两次密码不一致！</i>');
+                return
+            }
+           var birthday = $('#birthday').val();
+           var year = birthday.substring(0,4);
+           var city = $('#homecity_name').val();
+           var address = $('#address').val().trim();
+           var signature = $('#signature').val().trim();
+           var phone = $('#phone').val().trim();
+
+           /*if(name===Name&&GlobalGender===Gender&&Pass===password1&&Birthday===birthday&&City===city&&Address===address&&Signature===signature&&Phone===phone){
+               swal("您无任何更新操作！","Tip","info");
+               return
+           }*/
+
+           $.ajax({
+               type : 'POST',
+               url : "/user/userInfo",
+               dataType : 'json',
+               data :{
+                   _xsrf:$('#_xsrf').val(),
+                   type:"updateInfo",
+                   account:account,
+                   name:name,
+                   gender:gender,
+                   password:password1,
+                   birthday:birthday,
+                   year:year,
+                   city:city,
+                   address:address,
+                   signature:signature,
+                   phone:phone
+               } ,
+               cache : false,
+               beforeSend:function(){
+                    $('#loading').fadeIn(100);
+               },
+               success : function(data) {
+                    if(data.code==1){
+                        swal(data.msg, "Success", "success");
+                        $('#account').attr("disabled","true");
+                    }else if(data.code=-999){
+                        swal("登录超时，5秒后跳转登录页", "Error", "error");
+                        setTimeout(function () {
+                            parent.open("/login","_self");
+                        },5000);
+                    }else{
+                        swal(data.msg, "Failure", "error");
+                    }
+               },
+               complete:function (XHR,textStatus) {
+                   //console.log(textStatus);
+                   $('#loading').fadeOut(100);
+               }
+           });
+        });
+
+        //设置日期选择
+        $.fn.datepicker.dates['cn'] = {   //切换为中文显示
+            days: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+            daysShort: ["日", "一", "二", "三", "四", "五", "六", "七"],
+            daysMin: ["日", "一", "二", "三", "四", "五", "六", "七"],
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            today: "今天",
+            clear: "清除"
+        };
+
+        $('#datePick').datepicker({
+            autoclose: true, //自动关闭
+            beforeShowDay: $.noop,    //在显示日期之前调用的函数
+            calendarWeeks: false,     //是否显示今年是第几周
+            clearBtn: false,          //显示清除按钮
+            daysOfWeekDisabled: [],   //星期几不可选
+            endDate: new Date(),        //日历结束日期
+            forceParse: true,         //是否强制转换不符合格式的字符串
+            format: 'yyyy-mm-dd',     //日期格式
+            keyboardNavigation: true, //是否显示箭头导航
+            language: 'cn',           //语言
+            minViewMode: 0,
+            orientation: "auto",      //方向
+            rtl: false,
+            startDate: -Infinity,     //日历开始日期
+            startView: 0,             //开始显示
+            todayBtn: true,          //今天按钮
+            todayHighlight: true,    //今天高亮
+            weekStart: 0              //星期几是开始
+        });
+    });
+
+    //判断是否为移动设备
+    function isMobile() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        return bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM ;
+    }
+
+    function clearTip(id) {
+        $(id).html("");
+    }
+
+    //验证账号
+    function validate(val){
+        if(!val){
+            return ;
+        }
+        if(val.length<5){
+            $('#tip').html('');
+            $('#tip').css('color','#a94442');
+            $('#tip').append('<i class="fa fa-times-circle">&nbsp;账号需至少5个字符</i>');
+            return;
+        }
+        $.ajax({
+            url:'/user/userInfo',
+            type:'POST',
+            dataType:'json',
+            data:{
+                account:val,
+                type:"validate",
+                _xsrf:$('#_xsrf').val()
+            },
+            success:function(data){
+                if(data.code==1){
+                    $('#tip').html('');
+                    $('#tip').css('color','#3c763d');
+                    $('#tip').append('<i class="fa fa-info-circle">&nbsp;账号可用</i>');
+                }else{
+                    $('#tip').html('');
+                    $('#tip').css('color','#a94442');
+                    $('#tip').append('<i class="fa fa-times-circle">&nbsp;账号不可用</i>');
+                }
+            }
+        });
+    }
+
+</script>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<!-- 城市选择 -->
+<script type="text/javascript" src="../static/back/js/fixdiv.js"></script>
+<script type="text/javascript" src="../static/back/js/address.js"></script>
+<!-- 全局js -->
+<script src="../static/back/js/jquery.min.js?v=2.1.4"></script>
+<script src="../static/back/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<!-- Chosen -->
+<script src="../static/back/js/plugins/chosen/chosen.jquery.js"></script>
+<!-- JSKnob -->
+<script src="../static/back/js/plugins/jsKnob/jquery.knob.js"></script>
+<!-- Input Mask-->
+<script src="../static/back/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+<!-- Date picker -->
+<script src="../static/back/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<!-- Prettyfile -->
+<script src="../static/back/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+
+<!-- IonRangeSlider -->
+<script src="../static/back/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+<!-- iCheck -->
+<script src="../static/back/js/plugins/iCheck/icheck.min.js"></script>
+
+
+
+</body>
+</html>

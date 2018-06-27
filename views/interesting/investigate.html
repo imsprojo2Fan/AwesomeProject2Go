@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui">
+	<title>ZooORI.才华有限公司</title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/survey/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/css/survey/css/default.css">
+	<!-- FKPageTransitions CSS file -->
+    <link href="../../static/css/survey/css/fkpagetransitions.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../static/css/windmill2.css">
+    <link rel="shortcut  icon" type="image/x-icon" href="../../static/img/favicon.ico" media="screen"  />
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../../static/js/survey/survey.js"></script>
+    <!--提示框 -->
+    <link rel="stylesheet" href="../../static/css/sweet-alert.css">
+    <script src="../../static/js/sweet-alert.js"></script>
+    <style type="text/css">
+
+    </style>
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+	<script>
+		$(function(){
+		watch();
+	});
+	function watch(){
+		  var flag_ = 0;
+		  //alert("test");
+		  if(isMobile()){
+			$('#audio').html('');
+		  }else{
+			$('.wind').append('<div class="windmill03"><span class="windmill2_3"> <span class="pillar"></span><span class="axis"><span class="swing"></span><span class="swing2"></span><span class="swing3"></span></span></span></div>');
+		  }
+	}
+	function isMobile() {
+	    var sUserAgent = navigator.userAgent.toLowerCase();
+	    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+	    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+	    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+	    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+	    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+	    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+	    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+	    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+	    return bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM ;
+	}
+
+	function permit(val){
+    	$('#next').show(200);
+    }
+
+    var swalNum = 0;
+    function toSend(val){
+    	if(!val){
+    		if(swalNum==0){
+    			swal("写点建议吧", "HooHa~", "info");
+    			swalNum = swalNum+1;
+    		}
+
+    	}
+    }
+    function toIndex(){
+        window.open("/","_blank");
+	}
+    window.onload = function () {
+    	document.getElementById('loading-mask').style.display = 'none';
+    }
+	</script>
+	<style>
+	#loading-mask {
+    background: #fff;
+    height: 100%;
+    left: auto;
+    right:auto;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 999999999;
+}
+
+.loading-img {
+    height: 100%;
+    left: auto;
+    right:auto;
+    position: fixed;
+    top: 25%;
+    width: 100%;
+}
+</style>
+</head>
+<body id="body">
+<input type="hidden" value="{{ ._xsrf}}" id="_xsrf">
+	<div id="loading-mask">
+		<div class="loading-img">
+			<img alt="努力加载中..." src="../../static/img/preload03.gif"  />
+		</div>
+	</div>
+
+	<a href="javascript:void(0)"  onclick="toIndex()">
+	<div  class="nav">
+		<span style="color:#67bef9;font-size:40px;">Z<span style="color: #97EA74;">oo</span>ORI</span>
+	</div>
+	</a>
+	<div class="nav" style="top:48px;">
+		<div id="AMI01">
+		  	<span class="ami01"></span>
+		</div>
+		<div id="AMI02">
+			<span class="ami02"></span>
+		</div>
+	</div>
+
+	<ul class="myfkpage">
+      <li style="background: #fff;color:#000">
+      	<div class="container">
+			<div style="font-size:23px;"></div>
+			<div style="font-size:10px;text-align:left;margin-top:5%;line-height:17px;">
+				<div class="H2" >假装被安排在前面的故事。</div>
+				<p>从前，美国有个村子很穷，而且计划生育也做得很差(确定不是发生在中国?)，几乎每家每户都超生。结果，越穷越生，越生越穷，恶性循环。由于这个村子的存在，该州总是被评为贫困州，州长很无奈，勒令镇长去做好工作，做不好就走人。</p>
+				<div class="H2">如果您是镇长，您会怎么做？</div>
+				<p><span class="H3">镇长A:</span>跑到村子里挨家挨户做思想工作。</p>
+				<p>没起作用，镇长A滚了</p>
+				<p><span class="H3">镇长B:</span>开个宣讲会集中宣传，再挨家挨户逐个做思想工作，再给大家洗脑。</p>
+				<p>唔…镇长B也走了</p>
+				<p><span class="H3" >主角镇长:</span>主角镇长先去村子里走了一趟，发现这个村子真的穷，电都没通，村民还在用煤油灯。主角镇长看到这种状况，似乎想到了什么，马上给村子通电，装喇叭，装电视。并没有做什么计划生育宣传洗脑，可是几年下来，村子的人都发财致富了。</p>
+				<p class="H2">所以是因为他有主角光环？</p>
+				<p>年轻人，不能太 Naive，后面再告诉你。</p>
+			</div>
+      	</div>
+      </li>
+
+      <li style="background: rgb(171, 156, 234)">
+      	<div class="container">
+      		<div class="title" ><span class="T_">01</span>&nbsp;&nbsp;如果有1000万,您最想做什么？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R1"  type="radio" value="您是个对社会充满爱的人" name="survey01" /></td>
+							<td ><label for="R1">全部捐给希望工程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R2"  type="radio" value="您是个对地球环境保护极为重视的人" name="survey01" /></td>
+							<td><label for="R2">全部捐给环境保护组织&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R3"  type="radio" value="您是个对人类科学发展极为上行的人" name="survey01" /></td>
+							<td><label for="R3">全部捐给人类科学研究事业</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R4"  type="radio" value="您是个对祖国充满感情但大家不会认为你是五毛的人," name="survey01" /></td>
+							<td><label for="R4">自己留5毛，其他上交国家</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #60d7a9">
+      	<div class="container">
+      		<div class="title" ><span class="T">02</span>&nbsp;&nbsp;如果可以出国一次,您最想去哪？</div>
+				<div>
+					<table class="tableradio" border="1">
+						<tr >
+							<td style="width:15px;"><input id="R5" type="radio" value="心怀非洲贫困的广袤大地," name="survey02" /></td>
+							<td ><label for="R5">津巴布韦扶贫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R6" type="radio" value="对资本主义精神的宣扬宁可肝脑涂地," name="survey02" /></td>
+							<td><label for="R6">朝鲜宣扬资本主义&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R7"  type="radio" value="不甘穷困潦倒,对财富充满追求," name="survey02" /></td>
+							<td><label for="R7">迪拜捡垃圾过完一生</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R8" type="radio" value="对本土文化的世界普及已超过玄奘法师," name="survey02" /></td>
+							<td><label for="R8">法国旺多姆广场跳广场舞</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fdc162">
+      	<div class="container">
+      		<div class="title" ><span class="T_">03</span>&nbsp;&nbsp;如果您是老板,希望给自己开多少薪水？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R9" type="radio" value="对下属员工极其好的老板,<br>就是给自己开的薪资有点吃紧,<br>有点吃紧,<br>有点紧,<br>紧,<br>。" name="survey03" /></td>
+							<td ><label for="R9">￥800&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr onclick="javaascript:void(0);">
+							<td style="width:15px;"><input id="R10" type="radio" disabled="true" name="survey03" /></td>
+							<td><label for="R10">$15000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr onclick="javaascript:void(0);">
+							<td style="width:15px;"><input id="R11" type="radio" disabled="true" name="survey03" /></td>
+							<td><label for="R11">$25000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;" onclick="javaascript:void(0);">
+							<td style="width:15px;"><input id="R12" type="radio" disabled="true" name="survey03" /></td>
+							<td><label for="R12">$35000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fd6a62">
+      	<div class="container">
+      		<div class="title" ><span class="T">04</span>&nbsp;&nbsp;您的职业？</div>
+			<table class="tableradio" >
+				<tr >
+					<td style="width:15px;"><input id="R13"  type="radio" value="1" name="survey04" /></td>
+					<td ><label for="R13">学生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+				</tr>
+				<tr>
+					<td style="width:15px;"><input id="R14"  type="radio" value="2"  name="survey04" /></td>
+					<td><label for="R14">公司职员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+				</tr>
+				<tr >
+					<td style="width:15px;"><input id="R15"  type="radio" value="3"  name="survey04" /></td>
+					<td><label for="R15">自由职业者&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+				</tr>
+				<tr style="border-bottom:none;">
+					<td style="width:15px;"><input id="R16" type="radio" value="4"  name="survey04" /></td>
+					<td><label for="R16">无业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+				</tr>
+			</table>
+      	</div>
+      </li>
+      <li style="background: #f68dbb">
+      	<div class="container">
+      		<div class="title" ><span class="T_">05</span>&nbsp;&nbsp;您的性别？</div>
+				<div>
+					<table class="tableradio" >
+						<tr>
+							<td style="width:15px;"><input id="R17"  type="radio" value="1" name="survey05_" /></td>
+							<td ><label for="R17">男生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R18" type="radio" value="2" name="survey05_" /></td>
+							<td><label for="R18">女生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+                        <tr style="border-bottom:none;">
+                            <td style="width:15px;"><input id="R180" type="radio" value="3" name="survey05_" /></td>
+                            <td><label for="R18">其他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+                        </tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(96, 213, 188)">
+      	<div class="container">
+      		<div class="title" ><span class="T">06</span>&nbsp;&nbsp;您的年龄？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R19" type="radio" value="1" name="survey05" /></td>
+							<td ><label for="R19">15~18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R20" type="radio" value="2" name="survey05" /></td>
+							<td><label for="R20">19~25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R21" type="radio" value="3" name="survey05" /></td>
+							<td><label for="R21">26~35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R22" type="radio" value="4" name="survey05" /></td>
+							<td><label for="R22">35以上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(171, 156, 234)">
+      	<div class="container">
+      		<div class="title" ><span class="T_">07</span>&nbsp;&nbsp;您每月的收入(生活费)大约多少？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R23"  type="radio" value="1" name="survey06" /></td>
+							<td ><label for="R23">0-2,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R24" type="radio" value="2" name="survey06" /></td>
+							<td><label for="R24">2,000-5,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R25" type="radio" value="3" name="survey06" /></td>
+							<td><label for="R25">5,000-10,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R26" type="radio" value="4" name="survey06" /></td>
+							<td><label for="R26">10,000以上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #60d7a9">
+      	<div class="container">
+      		<div class="title" ><span class="T">08</span>&nbsp;&nbsp;您平时的工作(学习)压力大吗？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R27" type="radio" value="1" name="survey07" /></td>
+							<td ><label for="R27">很大&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R28" type="radio" value="2" name="survey07" /></td>
+							<td><label for="R28">大&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R29" type="radio" value="3" name="survey07" /></td>
+							<td><label for="R29">一般&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R30" type="radio" value="4" name="survey07" /></td>
+							<td><label for="R30">阶段性的&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fdc162">
+      	<div class="container">
+      		<div class="title" ><span class="T_">09</span>&nbsp;&nbsp;您感觉压力大的时候最想做些什么？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R31"  type="radio" value="1" name="survey08" /></td>
+							<td ><label for="R31">逛街购物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R32" type="radio"  value="2" name="survey08" /></td>
+							<td><label for="R32">寻找美食&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R33" type="radio"  value="3" name="survey08" /></td>
+							<td><label for="R33">旅游&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R35" type="radio"  value="4" name="survey08" /></td>
+							<td><label for="R35">以上都有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fd6a62">
+      	<div class="container">
+      		<div class="title" ><span class="T">10</span>&nbsp;&nbsp;您习惯用哪些工具上网？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R36"  type="radio" value="1" name="survey09" /></td>
+							<td ><label for="R36">电脑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R37" type="radio"  value="2" name="survey09" /></td>
+							<td><label for="R37">手机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R38" type="radio"  value="3" name="survey09" /></td>
+							<td><label for="R38">平板&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R39" type="radio"  value="4" name="survey09" /></td>
+							<td><label for="R39">以上都有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #f68dbb">
+      	<div class="container">
+      		<div class="title" ><span class="T_">11</span>&nbsp;&nbsp;您一天的上网时间？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R40" type="radio" value="1" name="survey10" /></td>
+							<td ><label for="R40">1~2小时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R41" type="radio"  value="2" name="survey10" /></td>
+							<td><label for="R41">3~5小时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R42" type="radio"  value="3" name="survey10" /></td>
+							<td><label for="R42">5~8小时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R43" type="radio"  value="4" name="survey10" /></td>
+							<td><label for="R43">8小时以上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(96, 213, 188)">
+      	<div class="container">
+      		<div class="title" ><span class="T">12</span>&nbsp;&nbsp;您通常上网都做些什么？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R44" type="radio" value="1" name="survey11" /></td>
+							<td ><label for="R44">聊天/刷微博/网购</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input type="radio" id="R45" value="2" name="survey11" /></td>
+							<td><label for="R45">听音乐/看电影或其他视频</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input type="radio" id="R46" value="3" name="survey11" /></td>
+							<td><label for="R46">逛论坛/浏览新闻</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input type="radio" id="R47" value="4" name="survey11" /></td>
+							<td><label for="R47">工作需要&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R48" type="radio"  value="5" name="survey11" /></td>
+							<td><label for="R48">以上都有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(171, 156, 234)">
+      	<div class="container">
+      		<div class="title" ><span class="T_">13</span>&nbsp;&nbsp;您是否关注互联网发展动态？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R49" type="radio" value="1" name="survey12" /></td>
+							<td ><label for="R49">很关注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R50" type="radio"  value="2" name="survey12" /></td>
+							<td><label for="R50">偶尔关注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R51" type="radio"  value="3" name="survey12" /></td>
+							<td><label for="R51">不关注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #60d7a9">
+      	<div class="container">
+      		<div class="title" ><span class="T">14</span>&nbsp;&nbsp;您所从事的行业？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R52" type="radio" value="1" name="survey13" /></td>
+							<td ><label for="R52">IT互联网&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R53" type="radio"  value="2" name="survey13" /></td>
+							<td><label for="R53">金融/房地产</label></td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R54" type="radio"  value="3" name="survey13" /></td>
+							<td><label for="R54">批发和零售业</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input type="radio" id="R55"  value="4" name="survey13" /></td>
+							<td><label for="R55">教育/文化体育/娱乐业</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R56" type="radio"  value="5" name="survey13" /></td>
+							<td><label for="R56">其他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fdc162">
+      	<div class="container">
+      		<div class="title" ><span class="T_">15</span>&nbsp;&nbsp;您所在公司是否有自己的门户网站？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R57" type="radio" value="1" name="survey14" /></td>
+							<td ><label for="R57">有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R58" type="radio"  value="2" name="survey14" /></td>
+							<td><label for="R58">没有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #fd6a62">
+      	<div class="container">
+      		<div class="title" ><span class="T">16</span>&nbsp;&nbsp;您所偏爱的网站风格？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R59" type="radio" value="1" name="survey15" /></td>
+							<td ><label for="R59">简洁大方&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R60" type="radio"  value="2" name="survey15" /></td>
+							<td><label for="R60">时尚酷炫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R61" type="radio"  value="3" name="survey15" /></td>
+							<td><label for="R61">传统复古&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #f68dbb">
+      	<div class="container">
+      		<div class="title" ><span class="T_">17</span> &nbsp;&nbsp;您觉得网页中的大写加粗该怎样写？</div>
+				<div>
+					<table class="tableradio" >
+						<tr style="font-size:13px;vertical-align:middle;">
+							<td style="width:15px;font-size:13px;"><input id="R62" type="radio"   value="1" name="survey16" /></td>
+							<td style="font-size:15px;line-height:15px;"><label for="R62">
+								&lt;p style="font-size:大写;font-weight:加粗"&gt;我是大写加粗&lt;/p&gt;</label>
+							</td>
+						</tr>
+						<tr style="font-size:13px;vertical-align:middle;">
+							<td style="width:15px;font-size:13px;"><input id="R63" type="radio"   value="2" name="survey16" /></td>
+							<td style="font-size:15px;line-height:15px;"><label for="R63">
+							&lt;p style="font-size:0.5rem;font-weight:bold"&gt;我是大写加粗&lt;/p&gt;</label>
+							</td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input type="radio"  id="R64" value="3" name="survey16" /></td>
+							<td><label for="R64"><span style="font-size:25px;font-weight:bold;coolor:#000;">我是大写加粗</span></label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(96, 213, 188)">
+      	<div class="container">
+      		<div class="title" ><span class="T">18</span> &nbsp;&nbsp;您是否有认识的程序员？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R65" type="radio"   value="1" name="survey17" /></td>
+							<td>
+								<label for="R65">是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R66" type="radio"  value="2" name="survey17" /></td>
+							<td>
+								<label for="R66">否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: #f68dbb">
+      	<div class="container">
+      		<div class="title" ><span class="T_">19</span> &nbsp;&nbsp;程序员给您的最大印象？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R67" type="radio"  value="1" name="survey18" /></td>
+							<td>
+								<label for="R67">严谨认真,无所不能</label>
+							</td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R68" type="radio"  value="2" name="survey18" /></td>
+							<td>
+								<label for="R68">思维活跃,技术狂热</label>
+							</td>
+						</tr>
+						<tr >
+							<td style="width:15px;"><input id="R69" type="radio"  value="3" name="survey18" /></td>
+							<td>
+								<label for="R69">年轻多斤,死宅</label>
+							</td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R70" type="radio"  value="4" name="survey18" /></td>
+							<td>
+								<label for="R70">老实聪明,不善交际</label>
+							</td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background: rgb(96, 213, 188)">
+      	<div class="container">
+      		<div class="title" ><span class="T">20</span>&nbsp;&nbsp;如果有创意的想法您是否愿意说出来？</div>
+				<div>
+					<table class="tableradio" >
+						<tr >
+							<td style="width:15px;"><input id="R71"   type="radio" value="1" name="survey19" /></td>
+							<td ><label for="R71">愿意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr>
+							<td style="width:15px;"><input id="R72" type="radio"  value="2" name="survey19" /></td>
+							<td><label for="R72">看情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+						<tr style="border-bottom:none;">
+							<td style="width:15px;"><input id="R73" type="radio"  value="3" name="survey19" /></td>
+							<td><label for="R73">不愿意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+						</tr>
+					</table>
+				</div>
+      	</div>
+      </li>
+      <li style="background:rgb(100, 206, 113)">
+      	<div class="container">
+      		<div class="title" ><span class="T_">21</span>
+      			对于所有您使用过的APP及网站系统中,是否有哪些功能暂不能满足您的需求,或您所希望的APP/网站系统该有哪些功能？
+      		</div>
+				<div>
+					<textarea onclick="permit(this.value)" onblur="toSend(this.value)" name="demand" id="demand" cols="" rows=""  placeholder="您的功能需求或建议"></textarea>
+				</div>
+      	</div>
+      </li>
+
+      <li style="background: #fff">
+      	<div class="container">
+      		<div id="submit">
+				<div style="margin-top:3%;">
+					<img src="../../static/css/images/smile.png" style="width:110px;">
+				</div>
+				<div style="text-align:center;font-size:22px;font-weight:bold;margin-top:3%;padding-bottom:0%;">感谢您的配合</div>
+				<div style="margin-top:3%;"><input id="mail" name="mail" style="font-size:15px;border: 1px #f2f4f3 solid;border-radius:5px;width:200px;height:30px;padding:2px 8px;" placeholder="邮箱地址" type="text"></div>
+				<div style="text-align:center;font-size:10px;margin-top:3%;"><span style="color:red;">*</span>填写邮箱，没准会有惊喜喔。</div>
+			</div>
+      	</div>
+      </li>
+    </ul>
+
+
+	<div class="wind" >
+
+	</div>
+	<div id="succ" class="footer" style="bottom:45%;display:none;">
+		<div style="margin-top:3%;">
+			<img src="../../static/css/images/smile2.jpg" style="width:110px;">
+		</div>
+		<div style="text-align:center;font-size:25px;font-weight:bold;margin-top:3%;padding-bottom:0%;">加入<span style="color:#67bef9">我们</span>&nbsp;<span id="timer" style="color:gray"></span></div>
+		<div style="margin-top:0%;text-align:center;font-size:18px;">[您将是我们极其重要的组成部分]</div>
+	</div>
+
+	<div id="foot01" class="footer" style="bottom:3%;">
+		<div style="width:100%;border:0px solid red;">
+    		<a class="btn" style="margin:0 auto;width:225px;" href="javascript:;" onclick="shownewts_next();">开始</a>
+    	</div>
+	</div>
+    <div id="foot02" class="footer" style="bottom:4%;">
+      <div id="pre" style="width:49%;float:left;border:0px solid red;">
+      	<a class="btn" style="float:right;" href="javascript:;" onclick="pre()">上一题</a>
+      </div>
+      <!-- <button id="count" onclick="alert(fkpage.getCurrentSlide());">当前页码</button> -->
+      <!-- <button onclick="alert(fkpage.getSlideCount());">总数</button> -->
+	  <div id="next" style="width:49%;float:right;border:0px solid red;">
+      	<a class="btn" href="javascript:;" style="float:left;" onclick="shownewts_next();">下一题</a>
+      </div>
+      <div id="submit_" style="width:49%;float:right;display:none;border:0px solid red;">
+    		<a class="btn"  style="float:left;" href="javascript:;"  onclick="subSurvey()">马上提交</a>
+      </div>
+      <!-- <button onclick="fkpage.goToSlide(3);">跳至4页</button> -->
+	</div>
+
+	<div id="foot04" class="footer" style="bottom:8%;display:none;">
+		<div style="width:100%;border:0px solid red;">
+    		<a class="btn" style="margin:0 auto;width:225px;" href="javascript:;"  onclick="toSign()">立即前往</a>
+    	</div>
+	</div>
+	<!-- jQuery library -->
+	<!--<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+    <script src="../../static/css/survey/js/jquery.min.js"></script>
+    <!-- FKPageTransitions Javascript file -->
+    <script src="../../static/css/survey/js/fkpagetransitions.js"></script>
+	
+    <script type="text/javascript">
+	function changeOpacity(this_,flag){
+		if(flag==1){
+			$(this_).css('opacity','0.85');
+			$(this_).attr('filter: alpha(opacity=85)');
+		}else{
+			$(this_).css('opacity','0.35');
+			$(this_).attr('filter: alpha(opacity=35)');
+		}
+	}
+	var fkpage,cindex = 35;
+	function shownewts_next(){
+	  if (cindex<0) cindex =35;
+	  if(cindex==33){
+		  cindex =28;
+	  }
+	  var tmp = fkpage.setSlideMode(34); 
+	  fkpage.goToNextSlide(); //下一页
+	  console.log(cindex);
+	  cindex --;
+	  
+	  var num = fkpage.getCurrentSlide();
+	  console.log('页数:'+num);
+	  if(num==0){
+		   $('#foot02').hide(200);
+		   $('#foot01').show(200);
+	  }else if(num==1){
+		   $('#foot01').hide(200);
+		   $('#foot02').show(200);
+		   $('#pre').hide(200);
+		   $('#next').hide(200);
+	   }
+	  else if(num==21){
+		  $('#submit_').hide(200);
+		  $('#next').show(200);
+	  }else if(num==22){
+		  $('#next').hide(200);
+		  $('#submit_').show(200);
+	  }else{
+		  $('#pre').show(200);
+		  $('#next').hide(200);
+	  }
+	}
+	function pre(){
+		if (cindex<0) cindex =35;
+		  if(cindex==33){
+			  cindex =28;
+		  }
+		  var tmp = fkpage.setSlideMode(34); 
+		  fkpage.goToPrevSlide();
+		  console.log(cindex);
+		  cindex --;
+		
+		 var num = fkpage.getCurrentSlide();
+		  console.log('pre页数:'+num);
+		  if(num==0){
+			   $('#foot02').hide(200);
+			   $('#foot01').show(200);
+		  }else if(num==1){
+			   $('#foot01').hide(200);
+			   $('#foot02').show(200);
+			   $('#pre').hide(200);
+		   }
+		  else if(num==21){
+			  $('#submit_').hide(200);
+			  $('#next').show(200);
+		  }else if(num==22){
+			  $('#next').hide(200);
+			  $('#submit_').show(200);
+		  }else{
+			  $('#pre').show(200);
+		  }
+	}
+	$(document).ready(function(){
+	
+		document.getElementsByTagName('body')[0].addEventListener('touchmove',function(e){
+		  e.preventDefault();
+		  e.stopPropagation();
+		  //swal("火星人来袭", "滑动已被禁止", "error");
+		  swal({
+			type: 'error',
+			title: "火星人来袭",
+			text: "滑动已被禁止",
+			/*imageUrl: imagePath,*/
+			timer: 1000
+		});
+		},false);
+	   
+	   fkpage = $('.myfkpage').FKPageTransitions();
+	   var num = fkpage.getCurrentSlide();
+	   if(num==0){
+		   $('#foot02').hide();
+		   
+	   }
+	   $('a').on('focus',function(){
+			this.blur();
+		});
+	 });
+	</script>
+	
+	<div id="audio" onmouseover="changeOpacity(this,'1')" onmouseout="changeOpacity(this,'0')" style="width:20%;position:fixed;margin:auto;left:0;bottom:0;z-index:9999; filter: alpha(opacity=50); opacity: 0.5;">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=2227140882&auto=1&height=32"></iframe>
+	</div>
+</body>
+</html>

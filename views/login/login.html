@@ -1,0 +1,1022 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+	<link rel="shortcut  icon" type="image/x-icon" href="../static/img/favicon.ico" media="screen"  />
+	<title>ZooORI.才华有限公司</title>
+	<link rel="stylesheet" href="../static/css/login.css">
+	<link href="../static/css/login_animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/iconfont.css">
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<link rel="stylesheet" href="../static/css/windmill.css">
+	<link href="../static/css/assets/animate.css" rel="stylesheet">
+  	<link href="../static/css/assets/style.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/js/login.js"></script>
+	<script src="../static/js/assets/jquery.fittext.js"></script>
+	<script src="../static/js/assets/jquery.lettering.js"></script>
+	<script src="../static/js/assets/jquery.textillate.js"></script>
+	<!-- 点赞提示框 -->
+	<link rel="stylesheet" href="../static/css/sweet-alert.css">
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<script src="../static/js/sweet-alert.js"></script>
+	<script src="../static/js/util.js"></script>
+	<script src="../static/js/cookie.js"></script>
+	<!-- loading加载 -->
+    <link rel="stylesheet" type="text/css" href="../static/plugins/loading/loading01/assets/loaders.css" />
+    <!--[if IE]>
+	<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+	
+	<!-- 滑动验证 -->
+	<link href="../static/css/drag.css" rel="stylesheet" type="text/css">
+	<script src="../static/js/drag.js" type="text/javascript"></script>
+	<link href="../static/css/signdrag.css" rel="stylesheet" type="text/css">
+	<script src="../static/js/signdrag.js" type="text/javascript"></script>
+    <link href="../static/css/resetdrag.css" rel="stylesheet" type="text/css">
+    <script src="../static/js/resetdrag.js" type="text/javascript"></script>
+    <!--复选框样式-->
+    <link href="../static/plugins/checkbox/checkbix.css" rel="stylesheet" type="text/css">
+    <script src="../static/plugins/checkbox/checkbix.js" type="text/javascript"></script>
+
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8 "></script>
+    {{/*<script type="text/javascript" charset="gb2312" src="http://counter.sina.com.cn/ip/"></script>*/}}
+
+	<script type="text/javascript">
+	//文字动画==================================================================
+	
+	$(document).keypress(function(event){    
+	    var keynum = (event.keyCode ? event.keyCode : event.which);    
+	    if(keynum == '9'){    
+	        return false;        
+	    }    
+	});  
+		var ipObj = {};
+	$(function(){
+	    var timeout = $('#timeout').val();
+	    //alert(timeout);
+		if(timeout){
+		    parent.open("/login","_self");
+		}
+	    //alert(returnCitySN["cip"]+','+returnCitySN["cname"]);
+        $.getJSON("//ip.wheff7.com/ipinfo", function(data) {
+            ipObj.ip = data.onlineip;
+            ipObj.city = data[1].city_nameCN;
+            ipObj.NetType = data[2].organizationCN;
+            //console.log(ipObj);
+        });
+
+		//初始化cookie
+		var ACC = getCookieValue('account');
+		var PASS = getCookieValue('password');
+		//alert(ACC)
+		$('#account').val(ACC);
+		$('#password').val(PASS);
+		if(ACC&&PASS){
+			$('#cookie').attr('checked',true);
+		}else{
+			$('#cookie').checked = false;
+		}
+		 //刷新注册表单
+		 $('#signForm')[0].reset();
+		 watch();
+		 $(function (){
+
+			    var log = function (msg) {
+
+			    }
+
+			    $('code').each(function () {
+			      var $this = $(this);
+			      $this.text($this.html());
+
+			    })
+
+			    var animateClasses = 'flash bounce shake tada swing wobble pulse flip flipInX flipOutX flipInY flipOutY fadeIn fadeInUp fadeInDown fadeInLeft fadeInRight fadeInUpBig fadeInDownBig fadeInLeftBig fadeInRightBig fadeOut fadeOutUp fadeOutDown fadeOutLeft fadeOutRight fadeOutUpBig fadeOutDownBig fadeOutLeftBig fadeOutRightBig bounceIn bounceInDown bounceInUp bounceInLeft bounceInRight bounceOut bounceOutDown bounceOutUp bounceOutLeft bounceOutRight rotateIn rotateInDownLeft rotateInDownRight rotateInUpLeft rotateInUpRight rotateOut rotateOutDownLeft rotateOutDownRight rotateOutUpLeft rotateOutUpRight hinge rollIn rollOut';
+
+			    var $form = $('.playground form')
+			      , $viewport = $('.playground .viewport');
+
+			    var getFormData = function () {
+
+			      var data = { 
+			        loop: true, 
+			        in: { callback: log('') }, 
+			        out: { callback: log('') }
+			      };
+
+			      $form.find('[data-key="effect"]').each(function () {
+
+			        var $this = $(this)
+			          , key = $this.data('key')
+			          , type = $this.data('type');
+			          data[type][key] = $this.val();
+
+			      });
+
+			      $form.find('[data-key="type"]').each(function () {
+
+			        var $this = $(this)
+			          , key = $this.data('key')
+			          , type = $this.data('type')
+			          , val = $this.val();
+
+			          data[type].shuffle = (val === 'shuffle');
+			          data[type].reverse = (val === 'reverse');
+			          data[type].sync = (val === 'sync');
+			      });
+			      return data;
+			    };
+
+			    $.each(animateClasses.split(' '), function (i, value) {
+			      var type = '[data-type]'
+			        , option = '<option value="' + value + '">' + value + '</option>';
+			      if (/Out/.test(value) || value === 'hinge') {
+			        type = '[data-type="out"]';
+			      } else if (/In/.test(value)) {
+			        type = '[data-type="in"]';
+			      } 
+			      if (type) {
+			        $form.find('[data-key="effect"]' + type).append(option);        
+			      }
+
+			    });
+
+			    $form.find('[data-key="effect"][data-type="in"]').val('fadeInLeftBig');
+			    $form.find('[data-key="effect"][data-type="out"]').val('fadeOutDownBig');
+
+			    $('.jumbotron h1')
+			      .fitText(0.5)
+			      .textillate({ in: { effect: 'flipInY' }});
+
+			    
+			    $('.jumbotron p')
+			      .fitText(3.2, { maxFontSize: 18 })
+			      .textillate({ initialDelay: 1000, in: { delay: 3, shuffle: true } });
+
+			    setTimeout(function () {
+			        $('.fade').addClass('in');
+			    }, 250);
+
+			    setTimeout(function () {
+			      $('h1.glow').removeClass('in');
+			    }, 2000);
+
+
+
+			    var $tlt = $viewport.find('.tlt')
+			      .on('start.tlt', log('start.tlt triggered.'))
+			      .on('inAnimationBegin.tlt', log(''))
+			      .on('inAnimationEnd.tlt', log(''))
+			      .on('outAnimationBegin.tlt', log(''))
+			      .on('outAnimationEnd.tlt', log(''))
+			      .on('end.tlt', log(''));
+
+			    $form.on('change', function () {
+			      var obj = getFormData();
+			      $tlt.textillate(obj);
+			    }).trigger('change');
+			  });
+		//文字动画结束=======================================================================================
+	 });
+	 
+	 function watch(){
+		  var flag_ = 0;
+		  //alert("test");
+		  if(isMobile()){
+			  	 $('#cookie_0').hide();
+			  	 $('#cookie_1').hide();
+				 $('#drag').hide();
+				 $('#signdrag').hide();
+              	 $('#resetdrag').hide();
+				 $('#login_gray').hide();
+				 $('#login_blue').show();
+				 $('#sign_gray').hide();
+				 $('#sign_blue').show();
+             	 $('#pass_gray').hide();
+              	 $('#pass_blue').show();
+				 $('#body').removeClass('unselect');
+		  }else{
+
+		  }
+	}
+	 
+	 function isMobile() {
+		    var sUserAgent = navigator.userAgent.toLowerCase();
+		    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+		    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+		    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+		    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+		    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+		    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+		    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+		    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+		    return bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM ;
+		}
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+
+	</script>
+
+	<style type="text/css">
+	unselect{
+		moz-user-select: -moz-none;
+		-moz-user-select: none;
+		-o-user-select:none;
+		-khtml-user-select:none;
+		-webkit-user-select:none;
+		-ms-user-select:none;
+		user-select:none;
+		}
+
+    ul { list-style-type: none;}
+    li { display: inline-block;}
+    li { margin: 10px 0;}
+    input.labelauty + label { font: 12px "Microsoft Yahei";}
+  	</style>
+</head>
+
+<body id="body" class="unselect"  ondragstart="return false"  onselectstart ="return false"   onbeforecopy="return false ">
+<input type="hidden" value="{{ ._xsrf}}" id="token">
+<input type="hidden" value="{{ .timeout}}" id="timeout">
+	<div id="loading" class="loading-wrap">
+		<div class="loader" >
+            <div class="la-ball-clip-rotate-multiple la-3x">
+                <div></div>
+                <div></div>
+            </div>
+			<div style="color: #fff;font-size: 16px;margin-top: 15px;">账号登录中...</div>
+       </div>
+    </div>
+	
+	<div style="width:100%;height:80px;position:fixed;top:0;background:#fff;z-index: 999">
+
+		<div class="logo">
+			<span style="color:#67bef9;">Z<span id="Z">Z</span><span style="color: #97EA74;">oo</span>ORI<span id="I">I</span></span>
+		</div>
+		
+		
+		<!-- 文字动画 -->
+		<a href="javascript:window.open('/','_blank')">
+		<div id="FONT01"  class="amifont" >
+			<div class="grid grid-pad">
+			     <section class="col-1-1">
+			        <div class="playground grid">
+			           <div id="FONT02" class="col-1-1 viewport">
+			              <div class="tlt">
+			                 <ul class="texts" style="display: none">
+			                    <li>时间从来不回答，生命从来不喧哗。</li>
+			                    <li>当初你乘光而来，为何今逆光离去。</li>
+			                    <li>时常梳理下自己，你将还会是太阳。</li>
+			                 </ul>
+			              </div>
+			            </div>
+			
+			            <div class="col-1-1 controls" style="padding-right:0;display:none;">
+			               <form class="grid grid-pad">
+			                  <div class="control col-1-2">
+			                    <label>In Animation</label>
+			                    <select data-key="effect" data-type="in"></select>
+			                    <select data-key="type" data-type="in">
+			                      <option value="">sequence</option>
+			                      <option value="reverse">reverse</option>
+			                      <option value="sync">sync</option>
+			                      <option value="shuffle">shuffle</option>
+			                    </select>
+			                  </div>
+			                  <div class="control col-1-2">
+			                    <label>Out Animation</label>
+			                    <select data-key="effect" data-type="out"></select>
+			                    <select data-key="type" data-type="out">
+			                      <option value="">sequence</option>
+			                      <option value="reverse">reverse</option>
+			                      <option value="sync">sync</option>
+			                      <option selected="selected" value="shuffle">shuffle</option>
+			                    </select>
+			                  </div>
+			                </form>
+			              </div>
+			            </div>
+			       </section>
+			</div>
+	    </div>
+	    </a>
+		<div style="margin-top:-3%;">
+			<div id="AMI01">
+		  		<span class="ami01"></span>
+			</div>
+			<div id="AMI02">
+				<span class="ami02"></span>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="wrap01" >
+		<!--动画1-->
+		<section id="animate01">
+		    <article>
+		      <div class="blue"></div>
+		      <div class="gray"></div>
+		      <div class="green"></div>
+		    </article>
+		  </section>
+		  <script src="../static/js/anime.js"></script>
+		  <script>
+
+		  var blueAnimation = anime({
+		    targets: '.blue',
+		    translateX: 300,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  var redAnimation = anime({
+		    targets: '.gray',
+		    translateX: 200,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  var greenAnimation = anime({
+		    targets: '.green',
+		    translateX: 250,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  blueAnimation.settings.complete = function() {
+		    greenAnimation.restart();
+		  }
+
+		  redAnimation.settings.complete = function() {
+		    blueAnimation.restart();
+		  }
+
+		  greenAnimation.settings.complete = function() {
+		    redAnimation.restart();
+		  }
+
+		  blueAnimation.play();
+
+		  </script>
+	</div>
+
+
+	<div class="wrap02" >
+		<!--动画2-->
+		<section id="animate01">
+		    <article>
+		      <div class="blue02"></div>
+		      <div class="gray02"></div>
+		      <div class="green02"></div>
+		    </article>
+		  </section>
+		  <script src="../static/js/anime.js"></script>
+		  <script>
+
+		  var blueAnimation02 = anime({
+		    targets: '.blue02',
+		    translateX: -200,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  var redAnimation02 = anime({
+		    targets: '.gray02',
+		    translateX: -300,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  var greenAnimation02 = anime({
+		    targets: '.green02',
+		    translateX: -250,
+		    direction: 'alternate',
+		    autoplay: false
+		  });
+
+		  blueAnimation02.settings.complete = function() {
+		    greenAnimation02.restart();
+		  }
+
+		  redAnimation02.settings.complete = function() {
+		    blueAnimation02.restart();
+		  }
+
+		  greenAnimation02.settings.complete = function() {
+		    redAnimation02.restart();
+		  }
+
+		  greenAnimation02.play();
+
+		  </script>
+	</div>
+	
+	<!-- 风车3 -->
+	<div class="windmill03">
+		<span class="windmill2_3">
+           <span class="pillar"></span>
+           <span class="axis">
+             <span class="swing"></span>
+             <span class="swing2"></span>
+             <span class="swing3"></span>
+           </span>
+         </span>
+	</div>
+
+	<!-- 风车6 -->
+	<div class="windmill06">
+		<span class="windmill2_3">
+           <span class="pillar"></span>
+           <span class="axis">
+             <span class="swing"></span>
+             <span class="swing2"></span>
+             <span class="swing3"></span>
+           </span>
+         </span>
+	</div>
+	<div class="windmill070"></div>
+				
+	<div class="login-box"  onfocus="this.blur()">
+		<div class="box-con tran"  onfocus="this.blur()">
+			<!-- 登录开始 -->
+			<div class="login-con f-l"  onfocus="this.blur()">
+				<form id="loginForm" method="post" autocomplete="off">
+					<div class="form-group">
+					<div class="signup-form">
+						<input  maxlength="30" autocomplete="off" disableautocomplete name="account" onfocus="clearTip('#account_result')" id="account" type="text" placeholder="登录账号"
+							onkeyup="this.value = this.value.replace(/[^0-9a-zA-Z@.\-]/g,'');"
+							onblur="showTag('#l_acc',this.value);"
+							/>
+						<a href="javascript:;"  id="l_acc" style="display:none;">登录账号</a>
+					</div>
+				</div>
+				<div id="account_result" ></div>
+				<div class="form-group">
+					<div class="signup-form">
+						<input  maxlength="30" autocomplete="off" disableautocomplete name="password" id="password" onfocus="clearTip('#login_result')" type="password" placeholder="登录密码" onblur="showTag('#l_pass',this.value);"/>
+						<a href="javascript:;"  id="l_pass" style="display:none;">登录密码</a>
+					</div>
+				</div>
+				</form>
+				<div id="login_result" ></div>
+				</form>
+				<div class="form-group">
+					<div id="drag"></div>
+					<script type="text/javascript">
+						$('#drag').drag();
+					</script>
+				</div>
+				
+				<div class="form-group">
+					<div style="" >
+						<table style="width:100%;">
+							<tr >
+
+								{{/*<td id="cookie_0" style="vertical-align:middle;text-align:right;"><input id="cookie" onfocus="this.blur();" type="checkbox" style="width:8px;height:8px;"></td>*/}}
+								<td id="cookie_0">
+                                    <input id="cookie" type="checkbox" class="checkbix" data-color="blue" data-text="一周内免登录" >
+								</td>
+								{{/*<td id="cookie_1" style="vertical-align:middle;color:#605d5d;">&nbsp;</td>*/}}
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="form-group">
+					<div style="background:gray;" id="login_gray"   class="sign" >
+						登录
+						<img  src="../static/img/loading.gif" style="display:none">
+					</div>
+					<div style="display:none;" id="login_blue" onclick="login()" tabindex="-1" class="sign" onmouseover="changeBg(this,'#0096da');" onmouseout="changeBg(this,'#67bef9');" style="background: rgb(103, 190, 249) none repeat scroll 0% 0%;">
+						登录
+					</div>
+				</div>
+				<div class="from-line"></div>
+				<div class="form-group">
+					<a href="javascript:;"  onfocus="this.blur()" class="move-reset a-tag tran">忘记密码？重置 <i class="iconfont tran">&#xe606;</i></a>
+				</div>
+				<div class="form-group">
+					<a href="javascript:;"  onfocus="this.blur()" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+				<!-- <div class="form-group">
+					<a href="javascript:;"  onfocus="this.blur()" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran">&#xe606;</i></a>
+				</div> -->
+			</div>
+			<!-- 登录结束 -->
+
+
+			<!-- 注册开始 -->
+			<form id="signForm" method="post">
+			<div class="signup f-l"  onfocus="this.blur()">
+				<!-- 邮箱注册开始 -->
+				<div class="form-group">
+						<div class="signup-form">
+							<input  style="padding-left:10px;margin-left:-10px;" maxlength="25" id="register_mail" onfocus="clearTip('#tip04')" type="text"
+								onblur="showTag('#r_mail',this.value);"
+								placeholder="邮箱地址">
+							<a class="endTip" href="javascript:;" id="r_mail" style="display:none;">邮箱地址</a>
+						</div>
+						<span id="tip04" class="error-notic"></span>
+				</div>
+                <div class="form-group">
+                    <div class="signup-form">
+                        <input  style="padding-left:10px;margin-left:-10px;" maxlength="20" id="register_password" onfocus="clearTip('#tip05')" type="password"
+                                onblur="showTag('#r_password',this.value);"
+                                placeholder="登录密码">
+                        <a class="endTip" href="javascript:;" id="r_password" style="display:none;">登录密码</a>
+                    </div>
+                    <span id="tip05" class="error-notic"></span>
+                </div>
+				<div class="form-group">
+					<div id="signdrag"></div>
+					<script type="text/javascript">
+						$('#signdrag').signdrag();
+					</script>
+				</div>
+				<div class="signup-email"  onfocus="this.blur()">
+					<div class="form-group">
+						<div id="sign_gray" style="background:gray;"  class="sign" >
+							注册
+						</div>
+						<div id="sign_blue" style="display:none;" onclick="sign()"  class="sign" onmouseover="changeBg(this,'#0096da');" onmouseout="changeBg(this,'#67bef9');">
+							注册
+						</div>
+					</div>
+					<p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p>
+				</div>
+			</form>
+				<!-- 邮箱注册结束 -->
+				
+				<!-- 手机号码注册开始 -->
+				<div class="signup-tel" style="display:none"  onfocus="this.blur()">
+					<div class="signup-form" id="message-inf" style="display:none">
+						<input type="text"   placeholder="短信验证码" style="width:180px;" onblur="verify.VerifyCount(this)">
+						<a href="javascript:;" class="reacquire">重新获取（59）</a>
+						<span class="error-notic">验证码输入错误</span>
+					</div>
+					<div class="form-group">
+						<button   type="submit" class="tran get-message pr">
+							<a href="javascript:;" class="tran">获取短信验证码</a>
+							<img class="loading" src="../static/img/loading.gif">
+						</button>
+					</div>
+				</div>
+				<!-- 手机号码注册 结束-->
+				<div class="from-line"></div>
+				{{/*<div class="form-group" >
+					<a href="quickSign.html" target="_self" tabindex=-1 class="a-tag tran blue-border">快捷方式，扫码注册<i class="iconfont tran">&#xe606;</i></a>
+				</div>*/}}
+				<div class="form-group"  onfocus="this.blur()">
+					<a href="javascript:;" class="move-login a-tag tran blue-border">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+				<!-- <div class="form-group"  onfocus="this.blur()">
+					<a href="javascript:;" class="move-other a-tag tran">使用第三方帐号登录<i class="iconfont tran">&#xe606;</i></a>
+				</div> -->
+			</div>
+			<!-- 注册结束 -->
+
+
+			<!-- 第三方登录开始 -->
+			<div class="other-way f-l"  onfocus="this.blur()">
+				<div class="form-group"  onfocus="this.blur()">
+					<button type="submit" class="tran pr"  onfocus="this.blur()">
+						<a href="javascript:;" class="tran">QQ帐号登录</a>
+						<img class="loading" src="../static/img/loading.gif">
+					</button>
+				</div>
+				<div class="form-group"  onfocus="this.blur()">
+					<button type="submit" class="tran pr"  onfocus="this.blur()">
+						<a href="javascript:;" class="tran">新浪微博帐号登录</a>
+						<img class="loading" src="../static/img/loading.gif">
+					</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="tran pr">
+						<a href="javascript:;" class="tran">微信帐号登录</a>
+						<img class="loading" src="../static/img/loading.gif">
+					</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="tran pr">
+						<a href="javascript:;" class="tran">网易帐号登录</a>
+						<img class="loading" src="../static/img/loading.gif">
+					</button>
+				</div>
+				<div class="from-line"></div>
+				<div class="form-group">
+					<a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+				<div class="form-group">
+					<a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+			</div>
+			<!-- 第三方登录结束 -->
+
+			<!-- 密码重置开始 -->
+			<div class="mimachongzhi f-l">
+				<div class="form-group">
+					<div class="signup-form">
+							<input type="hidden" name="uid" id="uid">
+							<input  style="padding-left:10px;margin-left:-10px;" id="pass_mail" onfocus="clearTip('#tip05')" type="text" 
+								onblur="showTag('#tag_mail',this.value);"
+								placeholder="邮箱地址">
+							<a class="endTip" href="javascript:;" id="tag_mail" style="display:none;">邮箱地址</a>
+					</div>
+					<span id="tip06" class="error-notic"></span>
+				</div>
+                <div class="form-group">
+                    <div id="resetdrag"></div>
+                    <script type="text/javascript">
+                        $('#resetdrag').resetdrag();
+                    </script>
+                </div>
+				<div class="form-group">
+					<div id="pass_gray"  class="sign" style="background:gray;">
+							发送重置密码邮件
+					</div>
+					<div id="pass_blue" style="display:none;"  onclick="submit_pass()"  class="sign" onmouseover="changeBg(this,'#0096da');" onmouseout="changeBg(this,'#67bef9');">
+							发送重置密码邮件
+					</div>
+				</div>
+				<div class="from-line"></div>
+				<div class="form-group">
+					<a href="javascript:;" class="move-signup	a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+				<div class="form-group">
+					<a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
+				</div>
+			</div>
+			<!-- 密码重置结束 -->
+
+
+			<!-- 手机注册成功添补信息 -->
+			<div class="mobile-success f-l">
+				<p>手机号 <span>186****7580</span> 验证成功</p>
+				<p>请完善您的账号信息，您也可以<a href="#">绑定现有账号</a></p>
+				<div class="form-group">
+					<input type="text" placeholder="邮箱" class="email-mobile" onblur="verify.verifyEmail(this)"/>
+					<span class="error-notic">邮箱格式不正确</span>
+				</div>
+				<div class="form-group">
+					<input type="text" placeholder="您的名字">
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)"/>
+					<span class="error-notic">密码长度不够</span>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="tran pr">
+						<a href="javascript:;" class="tran">注册</a>
+						<img class="loading" src="../static/img/loading.gif">
+					</button>
+				</div>
+				<p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p>
+			</div>
+			<!-- 手机注册成功添补信息 -->
+
+		</div>
+	</div>
+
+
+	<script>
+
+        Checkbix.init();
+
+		var _handle='';//储存电话是否填写正确
+
+		$(function(){
+			
+			$('#pass_mail').val('');
+
+			$(".signup-form input").on("focus",function(){
+
+				$(this).parent().addClass("border");
+
+			});
+
+			$(".signup-form input").on("blur",function(){
+
+				$(this).parent().removeClass("border");
+
+			})
+
+			//注册方式切换
+
+			$(".signup-select").on("click",function(){
+
+				var _text=$(this).text();
+
+				var $_input=$(this).prev();
+
+				$_input.val('');
+
+				if(_text=="手机注册"){
+
+					$(".signup-tel").fadeIn(200);
+
+					$(".signup-email").fadeOut(180);
+
+					$(this).text("邮箱注册");
+
+					$_input.attr("placeholder","手机号码");
+
+					$_input.attr("onblur","verify.verifyMobile(this)");
+
+					$(this).parents(".form-group").find(".error-notic").text("手机号码格式不正确")
+
+
+
+				}
+
+				if(_text=="邮箱注册"){
+
+					$(".signup-tel").fadeOut(180);
+
+					$(".signup-email").fadeIn(200);
+
+					$(this).text("手机注册");
+
+					$_input.attr("placeholder","邮箱");
+
+					$_input.attr("onblur","verify.verifyEmail(this)");
+
+					$(this).parents(".form-group").find(".error-notic").text("邮箱格式不正确")
+
+				}
+
+			});
+
+			//步骤切换
+
+			var _boxCon=$(".box-con");
+
+			$(".move-login").on("click",function(){
+
+				$(_boxCon).css({
+
+					'marginLeft':0
+
+				})
+
+			});
+
+			$(".move-signup").on("click",function(){
+
+				$(_boxCon).css({
+
+					'marginLeft':-320
+
+				})
+
+			});
+
+			$(".move-other").on("click",function(){
+
+				$(_boxCon).css({
+
+					'marginLeft':-640
+
+				})
+
+			});
+
+			$(".move-reset").on("click",function(){
+
+				$(_boxCon).css({
+
+					'marginLeft':-960
+
+				})
+
+			});
+
+			$("body").on("click",".move-addinf",function(){
+
+				$(_boxCon).css({
+
+					'marginLeft':-1280
+
+				})
+
+			});
+
+
+
+			//获取短信验证码
+			var messageVerify=function (){
+
+				$(".get-message").on("click",function(){
+
+					if(_handle){
+
+						$("#message-inf").fadeIn(100)
+
+						$(this).html('<a href="javascript:;">下一步</a><img class="loading" src="../static/img/loading.gif">').addClass("move-addinf");
+
+					}
+
+				});
+
+			}();
+
+		});
+
+		
+
+		//表单验证
+
+		function showNotic(_this){
+
+			$(_this).parents(".form-group").find(".error-notic").fadeIn(100);
+
+            $(_this).focus();
+
+		}//错误提示显示
+
+		function hideNotic(_this){
+
+			$(_this).parents(".form-group").find(".error-notic").fadeOut(100);
+
+		}//错误提示隐藏
+
+		var verify={
+
+			verifyEmail:function(_this){
+
+				var validateReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+				var _value=$(_this).val();
+
+            	if(!validateReg.test(_value)){
+
+            		showNotic(_this)
+
+            	}else{
+
+            		hideNotic(_this)
+
+            	}
+
+			},//验证邮箱
+
+			verifyMobile:function(_this){
+
+				var validateReg = /^((\+?86)|(\(\+86\)))?1\d{10}$/;
+
+				var _value=$(_this).val();
+
+            	if(!validateReg.test(_value)){
+
+            		showNotic(_this);
+
+            		_handle=false;
+
+            	}else{
+
+            		hideNotic(_this);
+
+            		_handle=true;
+
+            	}
+
+            	return _handle
+
+			},//验证手机号码
+
+			PasswordLenght:function(_this){
+
+				var _length=$(_this).val().length;
+
+				if(_length<6){
+
+					showNotic(_this)
+
+				}else{
+
+            		hideNotic(_this)
+
+            	}
+
+			},//验证设置密码长度
+
+			VerifyCount:function(_this){
+
+				var _count="123456";
+
+				var _value=$(_this).val();
+
+				console.log(_value)
+
+				if(_value!=_count){
+
+					showNotic(_this)
+
+				}else{
+
+					hideNotic(_this)
+
+				}
+
+			}//验证验证码
+
+		}
+		
+		
+		var flag = 0;
+		
+		function submit_pass(){
+
+			var mail = $('#pass_mail').val().trim();
+
+            if(!mail){
+                $("#tip06").html('<span class="tip_warning">请输入邮箱地址</span>').fadeIn(100);
+                return false;
+            }
+            var validateReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            var t = mail.indexOf('.com');
+            if(!validateReg.test(mail)||t<=0){
+                $("#tip06").html('<span class="tip_warning">邮箱格式不正确</span>').fadeIn(100);
+                return false;
+            }
+    		$.ajax({
+    			url:'login/operate',
+    			type:'POST',
+    			dataType:'json',
+    			data:{
+    				mail:mail,
+    				type:'resetMail',
+                    _xsrf:$('#token').val()
+    			},
+    			success:function(data){
+    				if(data.code==1){
+    					swal("邮件邮件已发送成功", "点击邮件链接重置密码", "success");
+    				}else{
+    					//$('#tip05').html('<span class="tip_warning">服务器被火星人劫持,稍候再试吧</span>');
+                        swal(data.msg, "Oops,出错了", "error");
+    				}
+    			}
+    		});
+    	}
+		
+		function timeup(id){
+    		var num = 10;
+    		setInterval(function(){
+    			num = num-1;
+    			if(num<10){
+    				num = '0'+num;
+    			}
+    			$(id).html(num);
+    			if(num==0){
+    				window.open('https://mail.qq.com/cgi-bin/loginpage','_blank');
+    				window.location.reload();
+    			}
+    		},800);
+    	}
+		
+    	function validate_pass(val){
+			
+    		if(!checkMail(val,'#tip05')){
+    			$('#pass_gray').show();
+				$('#pass_blue').hide();
+    			return false;
+    		}
+    		$.ajax({
+    			url:'user/validate',
+    			type:'GET',
+    			dataType:'json',
+    			data:{
+    				account:val
+    			},
+    			success:function(data){
+    				if(data.code==1){
+    					$('#pass_gray').show();
+    					$('#pass_blue').hide();
+    					$('#tip05').html('<span class="tip_warning">暂无该邮箱地址记录</span>');
+    				}else{
+    					$('#tip05').html('');
+    					$('#uid').val(data.data.uid);
+    					$('#pass_blue').show();
+    					$('#pass_gray').hide();
+    				}
+    			}
+    		});
+    	}
+
+	</script>
+
+
+</body>
+
+</html>

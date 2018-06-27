@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html><head><style>body {
+  background-color: #000;
+}
+
+.loader {
+  display: block;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 100px auto 0;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-animation: loaderAnim 3s infinite linear;
+          animation: loaderAnim 3s infinite linear;
+}
+.loader:before, .loader:after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #000;
+}
+.loader:before {
+  height: 80px;
+  width: 80px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.loader:after {
+  height: 100px;
+  width: 100px;
+  background-color: #000;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: -50px;
+  -webkit-animation: pulse 0.95541s infinite alternate;
+          animation: pulse 0.95541s infinite alternate;
+}
+
+@-webkit-keyframes loaderAnim {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loaderAnim {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: translateY(-50%) scale(0.25);
+            transform: translateY(-50%) scale(0.25);
+    border-color: #fff;
+  }
+  100% {
+    -webkit-transform: translateY(-50%) scale(1.9);
+            transform: translateY(-50%) scale(1.9);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: translateY(-50%) scale(0.25);
+            transform: translateY(-50%) scale(0.25);
+    border-color: #fff;
+  }
+  100% {
+    -webkit-transform: translateY(-50%) scale(1.9);
+            transform: translateY(-50%) scale(1.9);
+  }
+}
+</style><script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script></head><body><div class="loader"></div><script></script></body></html>

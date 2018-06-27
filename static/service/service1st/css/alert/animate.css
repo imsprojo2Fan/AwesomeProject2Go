@@ -1,0 +1,79 @@
+#TIP01{
+	width:50%;
+	color:#191937;
+	text-align:center;
+	border-top:1px solid #eee3;
+	border-bottom:0px solid #eee3;
+	height:50px;
+	line-height:50px;
+	font-size:18px;
+	float:left;
+}
+.div01{
+	width:40%;
+	/* background:#67bef9; */
+	border-top:0px solid #67bef9;
+	height:48px;
+	float:left;
+}
+#TIP02{
+	width:50%;
+	color:#191937;
+	text-align:center;
+	border-top:1px solid #eee3;
+	border-bottom:0px solid #eee3;
+	height:50px;
+	line-height:50px;
+	font-size:18px;
+	float:right;
+}
+#TIP02 div{
+	width:40%;
+	border-bottom:0px solid #97ea74;
+	/* background:#97ea74; */
+	height:48px;
+	float:right;
+}
+
+.animate01{
+	width:5rem;
+	border-top:2px solid #67bef9;
+	height:0px;
+	line-height:37px;
+	position: absolute;
+    left: 8%;
+    color: #000;
+    -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+    animation: mymove 5s infinite;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mymove {
+    50% {left: 80%;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    50% {left: 80%;}
+}
+
+.animate02{
+	width:5rem;
+	border-bottom:2px solid #97ea74;
+	height:0px;
+	position: absolute;
+    right: 8%;
+    line-height:48px;
+    /* background-color: #97ea74; */
+    color: #000;
+	-webkit-animation: mymove02 5s infinite; /* Chrome, Safari, Opera */
+    animation: mymove02 5s infinite;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mymove02 {
+    50% {right: 80%;}
+}
+
+/* Standard syntax */
+@keyframes mymove02 {
+    50% {right: 80%;}
+}

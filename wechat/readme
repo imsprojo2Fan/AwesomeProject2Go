@@ -1,0 +1,19 @@
+
+
+1.所有微信服务器的请求都只请求到在配置token时的那个接口，再通过MsgType判断用户是哪种类型操作
+
+2.返回给微信服务器的数据格式为xml或json字符串
+
+3.公众号主动给用户发消息的方式有两种:
+    1)客服发送:
+        url> https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=
+        数据格式:
+        {
+            "touser": "oR9hG0pZT0cYq6VrvLDU1s1r6Tnw",
+            "msgtype": "text",
+            "text": {
+                "content": "Hello World"
+            }
+        }
+    2)模板消息:
+        url> https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=

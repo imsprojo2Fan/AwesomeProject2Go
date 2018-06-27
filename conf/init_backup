@@ -1,0 +1,92 @@
+package init
+
+import (
+	"github.com/astaxie/beego/orm"
+	"io"
+	_ "github.com/go-sql-driver/mysql" // import your used driver
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
+	"time"
+	"net/http"
+	"html/template"
+)
+
+type Init_ struct {}
+
+func init()  {
+	//设置数据库信息
+	orm.RegisterDriver("mysql", orm.DRMySQL)
+	maxIdle := 30
+	maxConn := 30
+	orm.RegisterDataBase("default", "mysql", "root:123456@tcp(127.0.0.1:3306)/awesome?charset=utf8", maxIdle, maxConn)
+	//ORM调试日志
+	orm.Debug = true
+	var w io.Writer
+	orm.DebugLog = orm.NewLog(w)
+
+	//定制错误页
+	//beego.ErrorHandler("404",page_not_found)
+	//beego.ErrorController(&controllers.ErrorController{})
+
+	//文件上传默认内存缓存大小，默认值是 1 << 26(64M)
+	beego.BConfig.MaxMemory = 1 << 26
+	//是否开启文档内置功能，默认是 false
+	beego.BConfig.WebConfig.EnableDocs = true
+	//多个目录
+	beego.SetStaticPath("/file/download1","down1")
+	beego.SetStaticPath("/file/download2","down2")
+	//允许哪些后缀名的静态文件进行 gzip 压缩，默认支持 .css 和 .js
+	beego.BConfig.WebConfig.StaticExtensionsToGzip = []string{".css", ".js"}
+	//是否开启 XSRF，默认为 false，不开启  防跨站
+	//beego.BConfig.WebConfig.EnableXSRF = true
+	//beego.BConfig.WebConfig.XSRFExpire = 3600  //过期时间，默认1小时
+	//beego.BConfig.WebConfig.XSRFKey = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
+	//是否开启热升级，默认是 false，关闭热升级。
+	beego.BConfig.Listen.Graceful=false
+	//设置 HTTP 的超时时间，默认是 0，不超时。
+	beego.BConfig.Listen.ServerTimeOut=0
+	//监听本地网络地址类型，默认是TCP6，可以通过设置为true设置为TCP4。
+	beego.BConfig.Listen.ListenTCP4 = true
+	//是否启用 HTTP 监听，默认是 true。
+	beego.BConfig.Listen.EnableHTTP = true
+	//应用监听地址，默认为空，监听所有的网卡 IP。
+	beego.BConfig.Listen.HTTPAddr = ""
+	//应用监听端口，默认为 8080。
+	beego.BConfig.Listen.HTTPPort = 8080
+	//是否启用 HTTPS，默认是 false 关闭。当需要启用时，先设置 EnableHTTPS = true，并设置 HTTPSCertFile 和 HTTPSKeyFile
+	beego.BConfig.Listen.EnableHTTPS = false
+	//应用监听端口，默认为 10443
+	beego.BConfig.Listen.HTTPSPort = 10443
+	//开启 HTTPS 后，ssl 证书路径，默认为空。
+	beego.BConfig.Listen.HTTPSCertFile = "conf/ssl.crt"
+	//是否开启进程内监控模块，默认 false 关闭。
+	beego.BConfig.Listen.EnableAdmin = false
+	//监控程序监听的地址，默认值是 localhost 。
+	beego.BConfig.Listen.AdminAddr = "localhost"
+	//监控程序监听的地址，默认值是 8088 。
+	beego.BConfig.Listen.AdminPort = 8088
+	//session 是否开启，默认是 false。
+	beego.BConfig.WebConfig.Session.SessionOn = true
+	//session 过期时间，默认值是 3600 秒。
+	beego.BConfig.WebConfig.Session.SessionGCMaxLifetime = 3600
+	//session 默认存在客户端的 cookie 的时间，默认值是 3600 秒。
+	beego.BConfig.WebConfig.Session.SessionCookieLifeTime = 3600
+
+	//-----------------------------------------------------------------------log 设置
+	//beego.BeeLogger.DelLogger("console")//禁止日志输出到控制台
+	logs.EnableFuncCallDepth(true)//输出文件名和行号
+	//logs.SetLogger(logs.AdapterFile,`{"filename":"logs/project.log","level":7,"maxlines":0,"maxsize":0,"daily":true,"maxdays":10}`)
+	//cur := time.Now().Format("2006-01-02 15:04:05")
+	cur := time.Now().Format("2006-01-02")
+	logs.SetLogger(logs.AdapterMultiFile, `{"filename":"logs/`+cur+`.log","separate":[ "error", "warning","critical", "info", "debug"]}`)
+	//logs.SetLogger(logs.AdapterConn, `{"net":"tcp","addr":":7020"}`)
+	//异步输出log
+	logs.Async(1e3)
+}
+
+func page_not_found(rw http.ResponseWriter, r *http.Request){
+	t,_:= template.New("404.html").ParseFiles(beego.BConfig.WebConfig.ViewsPath+"/tip/404.html")
+	data :=make(map[string]interface{})
+	data["content"] = "page not found"
+	t.Execute(rw, data)
+}

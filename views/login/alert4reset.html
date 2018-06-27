@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui">
+    <title>用户操作-重置密码</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="../static/img/favicon.ico" media="screen"  />
+    <!--提示框 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/sweet-alert.css">
+    <script src="../../static/js/sweet-alert.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<input type="hidden" value="{{ ._xsrf}}" id="_xsrf">
+<input type="hidden" value="{{ .code}}" id="code">
+<input type="hidden" value="{{ .msg}}" id="msg">
+<input type="hidden" value="{{ .data}}" id="data">
+<input type="hidden" value="{{ .md}}" id="md">
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                {{/*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>*/}}
+                <h3 class="modal-title" id="myModalLabel">
+                    重置密码<span id="tip" style="color: red;padding-left: 15px;font-size: 10px"></span>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">输入密码</label>
+                        <input type="password" autofocus class="form-control" id="pass1"  maxlength="20" placeholder="">
+                        <label for="name">确认密码</label>
+                        <input type="password" class="form-control" id="pass2" maxlength="20" placeholder="">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="submit" type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    $(function () {
+
+
+        $('#myModal').on('hide.bs.modal', function () {
+            //alert('嘿，我听说您喜欢模态框...');
+        });
+
+        $(':input').on("focus",function () {
+            $('#tip').html("");
+        });
+
+        $('#submit').on('click',function () {
+            var pass1 = $('#pass1').val().trim();
+            var pass2 = $('#pass2').val().trim();
+            if(!pass1||!pass2){
+                $('#tip').html("输入框不能为空!");
+                return
+            }
+            if(pass1!=pass2){
+                $('#tip').html("两次输入密码不一致!");
+                return
+            }
+            $.post("/login/operate",{_xsrf:$('#_xsrf').val(), type:'resetOperate',password:pass1,md:$('#md').val()},function (data) {
+                if(data.code==1){
+                    swal(data.msg, data.data, "success");
+                    setTimeout(function () {
+                        window.open("/login","_self");
+                    },3000)
+                }else{
+                    swal(data.msg, data.data, "error");
+                }
+            });
+        });
+
+        var code = $('#code').val();
+        if(!code){
+             $('#myModal').modal({
+                 show:true,
+                 backdrop:'static'
+             });
+        }
+
+        setTimeout(function () {
+            var Type;
+            var Title = $('#msg').val();
+            var Msg = $('#data').val();
+            if(code==1){
+                Type = "success";
+            }else{
+                Type = "error";
+            }
+            //swal(Msg, "客服将尽快与您联系", "success");
+            if(code){
+                swal({
+                    title: Title,
+                    text: Msg,
+                    //timer: 5000,
+                    type: Type
+                });
+                setTimeout(function () {
+                    window.open("/login","_self");
+                },3000);
+            }
+        },100);
+    });
+
+</script>
+
+</body>
+</html>

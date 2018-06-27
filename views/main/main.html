@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>用户主页</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="shortcut  icon" type="image/x-icon" href="../static/img/favicon.ico" media="screen"  />
+    <link rel="shortcut icon" href="favicon.ico"> <link href="../static/back/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/back/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/back/css/animate.css" rel="stylesheet">
+    <link href="../static/back/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<input type="hidden" value="{{ ._xsrf}}" id="_xsrf">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                         <i class="fa fa-black-tie"></i>
+                                        <strong style="color:#67bef9;opacity:0.65;filter: alpha(opacity=65)" onmouseover="changeColor(this,1)" onmouseout="changeColor(this,0)" class="font-bold">Z<span style="color:#97EA74">oo</span>ORI</strong>
+                                    </span>
+                                </span>
+                        </a>
+                    </div>
+                    <div class="logo-element">ZooORI
+                    </div>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">个人信息</span>
+                </li>
+                <li class="tab">
+                    <a class="J_menuItem" id="main" href="/user/redirect?type=index">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">主页</span>
+                    </a>
+                </li>
+                <li class="tab">
+                    <a class="J_menuItem" href="/user/redirect?type=personalInfo">
+                        <i class="fa fa-user"></i>
+                        <span class="nav-label">信息管理</span>
+                    </a>
+                </li>
+                <li class="tab">
+                    <a class="J_menuItem" href="/user/redirect?type=timeLine">
+                        <i class="fa fa-calendar-o"></i>
+                        <span class="nav-label">时间轴</span>
+                    </a>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">报表信息</span>
+                </li>
+                <li class="tab">
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">统计图表</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="/user/redirect?type=loginLog">操作记录</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="line dk"></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope">其他分类</span>
+                </li>
+                <li class="tab">
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span><span class="label label-warning pull-right">16</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
+                        </li>
+                        <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                        </li>
+                    </ul>
+                </li>
+                {{/*<li class="line dk"></li>*/}}
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" id="more" data-toggle="dropdown" href="#" title="点击查看登录信息">
+                            {{/*<i class="fa fa-envelope"></i> <span class="label label-warning">16</span>*/}}
+                            <i class="fa fa-user"></i>Hi,{{ .name}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            {{/*<li class="m-t-xs">
+                                <div class="dropdown-messages-box">
+                                    <a href="javascript:void(0)" style="color:#24b7e5" class="pull-left">
+                                        登录
+                                    </a>
+                                    <div class="media-body">
+                                        <strong>福建-厦门</strong>
+                                        <br>
+                                        <small class="text-muted">2018.11.08 17:17:17</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="javascript:void(0)" style="color: red" class="pull-left">
+                                        登出
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>福建-厦门</strong>
+                                        <br>
+                                        <small class="text-muted">2018.11.08 17:17:17</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>*/}}
+
+                        {{range $key, $val := .logins}}
+                            <li class="m-t-xs">
+                                <div class="dropdown-messages-box">
+                                    <a href="javascript:void(0)"  class="pull-left">
+                                        {{/*{{$key}}*/}}
+                                    {{if $val.Type}}
+                                    <small style="color:#24b7e5 ">登录</small>
+                                    {{else}}
+                                        <small style="color:red ">登出</small>
+                                    {{end}}
+                                    </a>
+                                    <div class="media-body ">
+                                        <strong>{{$val.Address}}</strong>
+                                        <br>
+                                        <small class="text-muted logTime">{{$val.CreateTime}}</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                        {{end}}
+
+
+                            <li>
+                                <div  class="text-center link-block">
+                                    <a class="J_menuItem" onclick="hideLog()"  href="/user/redirect?type=loginLog">
+                                        <i class="fa fa-envelope"></i> <strong>查看更多</strong>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" onclick="logout()">
+                            退出&nbsp;&nbsp;<i class="fa fa-sign-out"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless></iframe>
+        </div>
+    </div>
+    <!--右侧部分结束-->
+</div>
+
+<!-- 全局js -->
+<script src="../static/back/js/jquery.min.js?v=2.1.4"></script>
+<script src="../static/back/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../static/back/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../static/back/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../static/back/js/plugins/layer/layer.min.js"></script>
+
+<!-- 自定义js -->
+<script src="../static/back/js/hAdmin.js?v=4.1.0"></script>
+<script type="text/javascript" src="../static/back/js/main.js"></script>
+<!-- 第三方插件 -->
+<script src="../static/back/js/plugins/pace/pace.min.js"></script>
+
+</body>
+
+</html>

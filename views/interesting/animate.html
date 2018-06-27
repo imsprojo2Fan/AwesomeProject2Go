@@ -1,0 +1,233 @@
+<!DOCTYPE>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+<title>animate</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="../static/img/favicon.ico" media="screen"  />
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var upInteral,downInterval;
+		var Dheight,Dwidth,random;
+		var animate_up,random,speed;
+		var blockNum;
+		$(function(){
+			Dheight = $(document).height();
+            Dwidth = $(document).width();
+            blockNum = Math.ceil(Dwidth/35);
+            initBlock(blockNum);
+			start();
+            
+		});
+
+		function initBlock(blockNum){
+			var showNum = 0;
+			var upId;
+			for (var i=1;i<blockNum+1;i++) {
+
+				if(i%2==0){
+					showNum = 0;
+				}else{
+					showNum = 1;
+				}
+				upId = 'up'+i;
+				$('#upWrap').append('<div id='+upId+' class="animate_up"></div>');
+				if(i%5==0){
+					$('#'+upId).css('background','#fff');
+				}else if(i%5==1){
+					$('#'+upId).css('background','#fff');
+				}else if(i%5==2){
+					$('#'+upId).css('background','#67bef9');
+				}else if(i%5==3){
+					$('#'+upId).css('background','#fff');
+				}else if(i%5==4){
+					$('#'+upId).css('background','#67bef9');
+				}
+				
+				
+				$('#'+upId).css('left',(i-1)*35);
+				speed = (i+1)*1000;
+				interval(i,upId);
+				
+			}
+		}
+
+		function interval(i,upId){
+			i = Math.abs(i-blockNum/2);
+			var speed01 = i*Math.ceil(Math.random()*1000)+500;
+			var speed02 = 0;
+			speed02 = speed01*2;
+
+			setInterval(function(){
+				animateUp2Down(speed01,"#"+upId);
+			},speed02);
+		}
+
+
+		function animateUp2Down(speed,blockId){
+				block = $(blockId);
+				var bottom = block.css('bottom');
+				if(bottom=='0px'){
+					block.show(200);
+	            	block.animate({bottom:Dheight,opacity:'0'},speed);
+				}else{
+					block.css('bottom', '0');
+					block.css('opacity', '1');
+	            	block.animate({bottom:Dheight,opacity:'0'},speed);
+				}
+		}
+
+		function randomNum(minNum,maxNum){
+
+		 	switch(arguments.length){ 
+		 		case 1: 
+			  		return parseInt(Math.random()*minNum+1); 
+			 		break; 
+		 		case 2: 
+			  		return parseInt(Math.random()*(maxNum-minNum+1)+minNum); 
+			 		break; 
+		 		default: 
+		  			return 0; 
+		 			break; 
+		 	} 
+		} 
+		
+		var hour,minute,second;//时 分 秒
+		hour=minute=second=0;//初始化
+		var millisecond=0;//毫秒
+		var int;
+    function Reset()//重置
+    {
+      window.clearInterval(int);
+      millisecond=hour=minute=second=0;
+      document.getElementById('timetext').value='00时00分00秒000毫秒';
+    }
+  
+    function start()//开始
+    {
+      int=setInterval(timer,10);
+    }
+  
+    function timer()//计时
+    {
+      millisecond=millisecond+10;
+
+      if(millisecond>=1000){
+        millisecond=0;
+        second=second+1;
+      }
+	 
+      if(second>=60){
+        second=0;
+        minute=minute+1;
+      }
+	  
+      if(minute>=60){
+        minute=0;
+        hour=hour+1;
+      }
+	  
+	  var h = hour<10||hour==60?'0'+hour:hour;
+	  var m = minute<10||minute==60?'0'+minute:minute;
+	  var s = second<10||second==60?'0'+second:second;
+	  var mm = millisecond<100?'0'+millisecond/10:millisecond/10;
+      var str = h+':'+m+':'+s+':'+mm;
+	  $('#timetext').html(str);
+  
+    }
+		
+	</script>
+
+
+</head>
+<style>
+	body{
+		background:#000;
+		text-align:center;
+		margin:0;
+	}
+	h1{
+		letter-spacing: 10px;
+		margin-top: 10%;
+		color: #ffffff;
+		transition: all .5s;
+		font-size:500%;
+		cursor: pointer;
+	}
+	h1:hover{
+		letter-spacing: 100px;
+		font-size:1200%;
+		color: #ffffff;
+		text-shadow:
+		0 0 5px #fff, 
+		0 0 10px #fff,
+		0 0 15px #fff, 
+		0 0 20px #67bef9, 
+		0 0 35px #67bef9, 
+		0 0 40px #67bef9, 
+		0 0 50px #67bef9, 
+		0 0 75px #67bef9;
+	}
+	h1 .line{
+		margin:50px auto 0;
+		transition: all 1s;
+		width:0;
+		height:8px;
+		border-radius:4px;
+		background:#fff;
+	}
+	h1:hover .line{
+		width:100%;
+		background: #67bef9;
+	}
+	#oo{
+		color:#97EA74; 
+	}
+	
+	.blue{
+		color:#67bef9;
+	}
+	#timetext{
+		color: white;
+		font-size: 300%;
+		font-weight: bold;
+	}
+
+	.upWrap{
+		position:fixed;
+		z-index: -999;
+		bottom:0;
+		left: 0;
+		width: 100%;
+		border:0px solid red;
+		height: 35px;
+	}
+
+	.animate_up{
+		background:white;
+		filter:alpha(Opacity=0);-moz-opacity:0;opacity: 0;
+		position:fixed;
+		z-index: -999;
+		bottom:0;
+		left: 0;
+		display:inline-block;
+		width: 35px;
+		height: 35px;
+		line-height: 35px;
+		font-size:18px;		
+	}
+	
+
+
+</style>
+</head>
+<body>
+
+	<h1>
+		才<span class="blue">华</span>有限公司<br>
+	</h1>
+	<div id="timetext"></div>
+	<div class="line"></div>
+	<div id="upWrap" class="upWrap"></div>
+
+</body>
+</html>

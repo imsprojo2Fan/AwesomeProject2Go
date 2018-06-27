@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui">
+    <title>用户操作-激活账号</title>
+    <link rel="shortcut  icon" type="image/x-icon" href="../static/img/favicon.ico" media="screen"  />
+    <!--提示框 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/sweet-alert.css">
+    <script src="../../static/js/sweet-alert.js"></script>
+
+</head>
+<body>
+<input type="hidden" value="{{ .code}}" id="code">
+<input type="hidden" value="{{ .msg}}" id="msg">
+<input type="hidden" value="{{ .data}}" id="data">
+<script>
+    $(function () {
+        setTimeout(function () {
+            var Type;
+            var code = $('#code').val();
+            var Title = $('#msg').val();
+            var Msg = $('#data').val();
+            if(code==1){
+                Type = "success";
+            }else{
+                Type = "error";
+            }
+            //swal(Msg, "客服将尽快与您联系", "success");
+            swal({
+                title: Title,
+                text: Msg,
+                //timer: 5000,
+                type: Type
+            });
+
+            setTimeout(function () {
+                window.open("/login","_self");
+            },3000);
+        },100);
+    });
+
+</script>
+
+</body>
+</html>

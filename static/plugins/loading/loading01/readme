@@ -1,0 +1,19 @@
+
+1.
+    <!-- loading加载 -->
+    <link rel="stylesheet" type="text/css" href="../static/plugins/loading/loading01/assets/loaders.css" />
+    <!--[if IE]>
+	<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+2.
+
+    <div id="loading" class="loading-wrap">
+            <div class="loader" >
+                <div class="la-ball-clip-rotate-multiple la-3x">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div style="color: #fff;font-size: 16px;margin-top: 15px;">账号登录中...</div>
+           </div>
+    </div>

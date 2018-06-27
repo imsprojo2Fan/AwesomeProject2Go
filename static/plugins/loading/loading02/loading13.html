@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html><head><style>@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  background: #eee;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+.container {
+  width: 700px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.card {
+  margin: 32px 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: white;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+}
+
+.card .icon-container {
+  width: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card .description {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 8px 8px 8px 0;
+}
+
+.card .description .name {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.card .description .name span {
+  font-size: .6em;
+  font-weight: normal;
+  font-style: italic;
+  color: #bbb;
+}
+
+.loading-icon {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  border: 0.25rem solid #ddd;
+  border-top-color: #333;
+  display: inline-block;
+  margin: 0 8px;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.perpetuum-mobile {
+  -webkit-animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);
+  animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);
+}
+
+.impetus {
+  -webkit-animation-timing-function: cubic-bezier(0.5, -0.35, 0.5, 1.35);
+  animation-timing-function: cubic-bezier(0.5, -0.35, 0.5, 1.35);
+}
+
+.full-circle {
+  -webkit-animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+  animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+.gravity {
+  -webkit-animation-timing-function: cubic-bezier(0.5, 0.8, 0.5, 0.2);
+  animation-timing-function: cubic-bezier(0.5, 0.8, 0.5, 0.2);
+}
+
+.overshot {
+  -webkit-animation-timing-function: cubic-bezier(0.65, 1.5, 0.6, 0.95);
+  animation-timing-function: cubic-bezier(0.65, 1.5, 0.6, 0.95);
+}
+
+.downhill {
+  -webkit-animation-timing-function: cubic-bezier(0.3, 0.1, 0.3, 0.85);
+  animation-timing-function: cubic-bezier(0.3, 0.1, 0.3, 0.85);
+}
+
+.pendulum {
+  -webkit-animation-timing-function: cubic-bezier(0.3, 1.65, 0.7, -0.65);
+  animation-timing-function: cubic-bezier(0.3, 1.65, 0.7, -0.65);
+}
+
+.wtf {
+  -webkit-animation-timing-function: cubic-bezier(1, -2.3, 1, 2.5);
+  animation-timing-function: cubic-bezier(1, -2.3, 1, 2.5);
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 100%;
+  }
+}</style><script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script></head><body><div class="container">
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon perpetuum-mobile"></div>
+    </div>
+    <div class="description">
+      <div class="name">Perpetuum Mobile</div>
+      <code>cubic-bezier(0.55, 0.15, 0.45, 0.85)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon impetus"></div>
+    </div>
+    <div class="description">
+      <div class="name">Impetus</div>
+      <code>cubic-bezier(0.5, -0.35, 0.5, 1.35)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon full-circle"></div>
+    </div>
+    <div class="description">
+      <div class="name">Full Circle</div>
+      <code>cubic-bezier(0.6, 0, 0.4, 1)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon gravity"></div>
+    </div>
+    <div class="description">
+      <div class="name">Gravity</div>
+      <code>cubic-bezier(0.5, 0.8, 0.5, 0.2)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon overshot"></div>
+    </div>
+    <div class="description">
+      <div class="name">Overshot</div>
+      <code>cubic-bezier(0.65, 1.5, 0.6, 0.95)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon downhill"></div>
+    </div>
+    <div class="description">
+      <div class="name">Downhill Is Always Easier</div>
+      <code>cubic-bezier(0.3, 0.1, 0.3, 0.85)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon pendulum"></div>
+    </div>
+    <div class="description">
+      <div class="name">Pendulum</div>
+      <code>cubic-bezier(0.3, 1.65, 0.7, -0.65)</code>
+    </div>
+  </div>
+  <div class="card">
+    <div class="icon-container">
+      <div class="loading-icon wtf"></div>
+    </div>
+    <div class="description">
+      <div class="name">WTF <span>don't actually use this one :P</span></div>
+      <code>cubic-bezier(1, -2.3, 1, 2.5)</code>
+    </div>
+  </div>
+</div><script></script></body></html>

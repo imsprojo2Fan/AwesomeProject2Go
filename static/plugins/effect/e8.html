@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html><head><style>body {
+  background-color: #2D2D30;
+  overflow: hidden;
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  top: 50%;
+  background-color: #0097FB;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  -webkit-animation: 3s linear loader infinite;
+          animation: 3s linear loader infinite;
+}
+
+.dot:nth-of-type(1) {
+  left: 0px;
+}
+
+.dot:nth-of-type(2) {
+  left: -10px;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+.dot:nth-of-type(3) {
+  left: -20px;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.dot:nth-of-type(4) {
+  left: -30px;
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+.dot:nth-of-type(5) {
+  left: -40px;
+  -webkit-animation-delay: 0.60s;
+          animation-delay: 0.60s;
+}
+
+@-webkit-keyframes loader {
+  0%, 20% {
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    opacity: 0;
+  }
+  35% {
+    -webkit-transform: translate(45vw, -50%);
+            transform: translate(45vw, -50%);
+    opacity: 1;
+  }
+  65% {
+    -webkit-transform: translate(55vw, -50%);
+            transform: translate(55vw, -50%);
+    opacity: 1;
+  }
+  80%, 100% {
+    -webkit-transform: translate(100vw, -50%);
+            transform: translate(100vw, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes loader {
+  0%, 20% {
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+    opacity: 0;
+  }
+  35% {
+    -webkit-transform: translate(45vw, -50%);
+            transform: translate(45vw, -50%);
+    opacity: 1;
+  }
+  65% {
+    -webkit-transform: translate(55vw, -50%);
+            transform: translate(55vw, -50%);
+    opacity: 1;
+  }
+  80%, 100% {
+    -webkit-transform: translate(100vw, -50%);
+            transform: translate(100vw, -50%);
+    opacity: 0;
+  }
+}
+</style><script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script></head><body><div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div><script></script></body></html>
