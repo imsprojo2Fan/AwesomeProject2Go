@@ -24,7 +24,7 @@ func InitLogs() {
 	level := beego.AppConfig.String("logs::level")
 	cur := time.Now().Format("2006-01-02")
 	fileLogs.SetLogger(logs.AdapterMultiFile, `{"filename":"logs/`+cur+`.log",
-		"separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"],
+		"separate":["critical", "error", "info", "debug"],
 		"level":`+level+`,
 		"daily":true,
 		"maxdays":10}`)
