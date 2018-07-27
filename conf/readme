@@ -17,3 +17,6 @@ go get github.com/astaxie/beego/orm
 
 6.配置GO环境变量(GOPATH)、GOROOT为默认即可
     例：GOPATH=C:\Go\workspace 会在workspace下生成3个文件夹即bin(存放go install后的可执行文件等)、pkg、src(存放项目源码及依赖包)
+
+7.发布应用 nohup go run main.go >/dev/null 2>log &
+
