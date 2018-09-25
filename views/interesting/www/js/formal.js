@@ -1,8 +1,9 @@
 
 
 			function start(){
+                debugger
 				if(getCookieValue('volume')){
-					$('#loading').fadeIn(200);
+					//$('#loading').fadeIn(200);
 					formal();
 				}else{
 					swal({
@@ -17,7 +18,7 @@
 						},
 						function(){
 							addCookie('volume',true,1,'/');
-							$('#loading').fadeIn(200);
+							//$('#loading').fadeIn(200);
 							formal();
 						}
 						
@@ -29,7 +30,6 @@
 				
 				autoPlayMusic();
 				audioAutoPlay();
-				
 				setTimeout(function(){
 					$('#loading').fadeOut(50);
 					$('#t1').fadeIn(100);
@@ -72,7 +72,7 @@
 																						setTimeout(function(){
 																							$('#content02').fadeOut(100);
 																							$('#content03').fadeIn(100);
-																							$('#t21').fadeIn(4000);
+																							$('#t21').fadeIn(1000);
 																							setTimeout(function(){
 																								$('#next3').trigger('click');
 																								setTimeout(function(){
@@ -111,15 +111,15 @@
 															},4500);//梦醒时见ta
 														},4500);//当七十岁之最爱
 													},4000);//归来仍是少年
-												},5000);//期,未至之于尔
-											},4500);//往事难守
-										},4500);//或闲云野鹤,浮世沉沦
-									},4500);//纵使相逢不识缘
-								},4200);//行将路远之艰
-							},4500);//何人喜孤烈独酒
-						},4500);//畏夜路者众
-					},4000);//难掩期许
-				},16000);//岁暮之殊
+												},1000);//期,未至之于尔
+											},1500);//往事难守
+										},1500);//或闲云野鹤,浮世沉沦
+									},1500);//纵使相逢不识缘
+								},1200);//行将路远之艰
+							},1500);//何人喜孤烈独酒
+						},1500);//畏夜路者众
+					},1000);//难掩期许
+				},0);//岁暮之殊
 			}
 			
 			function alertFire(){

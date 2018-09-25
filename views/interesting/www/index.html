@@ -21,22 +21,21 @@
 	<script src="../static/plugins/www/sweetalert/sweet-alert.js"></script>
 	<!--sweet alert end-->
 	<script src="../static/plugins/www/js/jquery-1.11.0.min.js">
-	
-	
+
 	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 
 </head>
 <body class="demo-1">
 		<div id="player" style="display:none">
-			<audio style="display:none; height: 0" id="bg-music" preload="load"  src="../static/plugins/www/mp3/If I Should Return.mp3" loop="loop"></audio>
+			<audio style="display:none; height: 0" id="bg-music" preload="load"  src="http://music.163.com/song/media/outer/url?id=32619160.mp3" loop="loop"></audio>
 			<!--<audio style="display:none; height: 0" id="bg-music" preload="auto" src="http://m10.music.126.net/20180212171859/6f3872c3be8fadef698bd7b1e5c5ce5b/ymusic/05e9/19b6/e3c3/6cf55bf0297524f65c47675f140265cc.mp3" loop="loop"></audio>-->
-			
+
 		</div>
-		
+
 		<div id="caculate" style="display:none">
 			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264493493'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1264493493%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 		</div>
-		
+
 		<div id="loading_circle">
 			<div id="loading-center">
 				<div id="loading-center-absolute">
@@ -46,18 +45,18 @@
 					<div class="object" id="object_four" style="left:60px;"></div>
 					<div class="object" id="object_five" style="left:80px;"></div>
 				</div>
-			</div> 
-		</div>
-			
-		
-		<div style="display:none" id="loading">
-			<div id="loading_wrap">
-				<canvas id="c" ></canvas>
 			</div>
 		</div>
 
+
+		{{/*<div style="display:none" id="loading">
+			<div id="loading_wrap">
+				<canvas id="c" ></canvas>
+			</div>
+		</div>*/}}
+
 		<div id="bg_fireworks" style="display: none;z-index: 999" class="bg_fireworks"></div>
-		
+
 		<svg class="hidden">
 			<symbol id="icon-arrow" viewBox="0 0 24 24">
 				<title>arrow</title>
@@ -81,7 +80,7 @@
 				<div id="content01" class="slideshow">
 					<div class="slide slide--current">
 						<div class="slide__bg slide__bg--1"></div>
-						<h4 style="display:none" id="t1" class="word word--1">岁暮之殊</h4>
+						<h4 id="t1" class="word word--1">岁暮之殊</h4>
 					</div>
 					<div class="slide">
 						<div class="slide__bg slide__bg--2"></div>
@@ -120,7 +119,7 @@
 					<button id="pre" class="slidenav__item slidenav__item--prev"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 					<button id="next" class="slidenav__item slidenav__item--next"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 				</nav>
-				
+
 				<div id="content02" style="display:none" class="slideshow">
 					<div class="slide slide--current">
 						<div class="slide__bg slide__bg--1"></div>
@@ -163,7 +162,7 @@
 					<button id="pre2" class="slidenav__item slidenav__item--prev"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 					<button id="next2" class="slidenav__item slidenav__item--next"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 				</nav>
-				
+
 				<div id="content03" style="display:none" class="slideshow">
 					<div class="slide slide--current">
 						<div class="slide__bg slide__bg--1"></div>
@@ -206,14 +205,14 @@
 					<button id="pre3" class="slidenav__item slidenav__item--prev"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 					<button id="next3" class="slidenav__item slidenav__item--next"><svg class="icon icon--navarrow"><use xlink:href="#icon-nav-arrow"></use></svg></button>
 				</nav>
-				
+
 			</div>
 		</main>
 		<script src="../static/plugins/www/js/charming.min.js"></script>
 		<script src="../static/plugins/www/js/anime.min.js"></script>
 		<script src="../static/plugins/www/js/wordFx.js"></script>
 		<script type="text/javascript" src="../static/plugins/www/js/jquery.fireworks.js"></script>
-		<script src="../static/plugins/www/js/loading.js"></script>
+		{{/*<script src="../static/plugins/www/js/loading.js"></script>*/}}
 		<script>
 
 			window.onload = function () {
