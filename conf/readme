@@ -12,6 +12,9 @@ _ "github.com/go-sql-driver/mysql" // import your used driver
 4.安装 ORM
 go get github.com/astaxie/beego/orm
 
+4.1安装redis
+go get github.com/gomodule/redigo/redis
+
 5.程序初始化执行顺序
 入口main.go --> models.init() --> router.init() --> sysinit.init() --> main.init() --> main.go.main()
 
