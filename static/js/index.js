@@ -15,7 +15,7 @@ $(document).ready(function() {
 			$('#login').show();
 			if (scroll>= 2048) {
 				if(!isToSurvey){
-					toInvestigate(isPhone);
+					//toInvestigate(isPhone);
 				}
 			}
 		} else {
