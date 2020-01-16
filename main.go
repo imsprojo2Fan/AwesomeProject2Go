@@ -27,6 +27,7 @@ func init()  {
 	beego.BConfig.WebConfig.XSRFKey = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o"
 	//是否开启热升级，默认是 false，关闭热升级。
 	beego.BConfig.Listen.Graceful=false
+	beego.SetStaticPath("/file", "./file")
 
 	//判断用户是否登录
 	var FilterUser = func(ctx *context.Context) {

@@ -29,7 +29,7 @@ func (c *IndexController) Index() {
 	//c.Data["Email"] = "astaxie@gmail.com"
 	//设置token
 	c.Data["_xsrf"] = c.XSRFToken()
-	c.TplName = "index.html"
+	c.TplName = "amouse.html"
 
 }
 
@@ -128,15 +128,12 @@ func (this *IndexController) IndexOperate() {
 }
 
 func (this *IndexController) InterestOperate() {
-	oType := this.GetString("type")
-	if oType=="survey"{
+	page := this.Ctx.Input.Param(":page")
+	if page=="survey"{
 		this.Data["_xsrf"] = this.XSRFToken()
 		this.TplName = "interesting/investigate.html"
-	}else if oType=="animate"{
-		this.TplName = "interesting/animate.html"
-	}else if oType=="remote"{
-		this.TplName = "interesting/www/index.html"
 	}
+	this.TplName = "interesting/"+page+".html"
 
 }
 

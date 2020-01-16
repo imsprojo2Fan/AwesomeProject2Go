@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Scrolling Letters Animation | Demo 4 </title>
+		<meta name="description" content="A scrolling letters animation where some text changes depending on the page's scroll position" />
+		<meta name="keywords" content="scroll, letters, animation, javascript, web design, web development" />
+		
+		<link rel="stylesheet" type="text/css" href="../static/plugins/txt_effect/effect1/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../static/plugins/txt_effect/effect1/css/demo4.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+		<style>
+            /* 设置滚动条的样式 */
+            ::-webkit-scrollbar {
+                width:1px;
+            }
+            /* 滚动槽 */
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+                border-radius:10px;
+            }
+            /* 滚动条滑块 */
+            ::-webkit-scrollbar-thumb {
+                border-radius:1px;
+                background:rgba(0,0,0,0.1);
+                -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+            }
+            ::-webkit-scrollbar-thumb:window-inactive {
+                background:rgba(255,0,0,0.4);
+            }
+			html{
+                scrollbar-width: none; /* Firefox */
+                scrollbar-color: transparent transparent;
+                scrollbar-track-color: transparent;
+                -ms-scrollbar-track-color: transparent;
+			}
+		</style>
+	</head>
+	<body class="demo-4 loading">
+		<main>
+			<div class="content">
+				<div class="content__section">
+					<h2 class="content__text" style="padding-left: 38vmax!important;">乐亲朋</h2>
+				</div>
+				<div class="content__section">
+					<h2 class="content__text" style="padding-left: 38vmax!important;">岁无忧</h2>
+				</div>
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/1.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 26vmax!important;">祈一往有情深</h2>
+				</div>
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/1.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 33vmax!important;">时岁温柔</h2>
+				</div>
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/3.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 26vmax!important;">愿前路皆繁花</h2>
+				</div>
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/3.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 33vmax!important;">贤良方正</h2>
+				</div>
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/5.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 22vmax!important;">春有百花秋有月</h2>
+				</div>
+
+				<div class="content__section">
+					<a class="content__link"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/5.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 22vmax!important;">夏有凉风冬有雪</h2>
+				</div>
+
+				<div class="content__section">
+					<a class="content__link content__link--nobottom"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/6.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 22vmax!important;">心如浮云常自在</h2>
+				</div>
+
+				<div class="content__section">
+					<a class="content__link content__link--nobottom"><img class="content__img" src="../static/plugins/txt_effect/effect1/img/set4/6.jpg" alt="img"/></a>
+					<h2 class="content__text" style="padding-left: 22vmax!important;">意似流水任东西</h2>
+				</div>
+			</div>
+		</main>
+		<script src="../static/plugins/txt_effect/effect1/js/imagesloaded.pkgd.min.js"></script>
+		<script src="../static/plugins/txt_effect/effect1/js/charming.min.js"></script>
+		<script src="../static/plugins/txt_effect/effect1/js/anime.min.js"></script>
+		<script src="../static/plugins/txt_effect/effect1/js/demo4.js"></script>
+        <script src="../static/js/jquery.min.js"></script>
+		<script>
+			let topArr = [];
+			$(function () {
+			    $('.content__text').each(function (item,i) {
+                    let top = $(this).offset().top;
+                    topArr.push(top);
+                });
+				let index = 0;
+			    setInterval(function () {
+                    index++;
+                    window.scrollTo({
+                        top: topArr[index],
+                        behavior: "smooth"
+                    });
+                    if(index==topArr.length){
+                        $(window.parent.document).find("#mainframe").attr("src", "/interesting/txt_effect_5");
+					}
+                },4000);
+
+            });
+		</script>
+	</body>
+</html>

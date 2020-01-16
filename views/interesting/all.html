@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>才华有限公司</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="player" style="display:none">
+    {{/*<audio style="display:none; height: 0" id="bg-music" preload="load"  src="/file/canon.mp3"></audio>*/}}
+    <audio style="display:none; height: 0" id="bg-music" preload="auto" src="https://m701.music.126.net/20200116164737/6609d1189e99cfcad7e292d749ae672d/jdyyaac/0f5b/005c/530e/81608bc73976f7cc6798dd40b6658629.m4a" loop="loop"></audio>
+</div>
+
+<div id="iframeWrap">
+    <iframe class="myFrame"  id="mainframe" style="overflow-y: auto" name="myFrame" width="100%" height="100%" src="/interesting/amouse" frameborder="0" data-id="" ></iframe>
+</div>
+
+<script src="../static/js/jquery.min.js"></script>
+<script>
+    let mainFrame;
+    let height;
+    $(function () {
+
+        autoPlayMusic();
+        audioAutoPlay();
+
+        height = document.documentElement.clientHeight;
+        changeFrameHeight(0);
+    });
+    function changeFrameHeight(num){
+        mainFrame = document.getElementById("mainframe");
+        height = height+num;
+        mainFrame.height = height;
+    }
+    window.onresize=function() {
+        changeFrameHeight(0);
+    };
+
+    function audioAutoPlay() {
+        let audio = document.getElementById('bg-music');
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    // 音乐播放
+    function autoPlayMusic() {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    function musicPlay(isPlay) {
+        let media = document.querySelector('#bg-music');
+        if (isPlay && media.paused) {
+            media.play();
+        }
+        if (!isPlay && !media.paused) {
+            media.pause();
+        }
+    }
+</script>
+
+</body>
+</html>

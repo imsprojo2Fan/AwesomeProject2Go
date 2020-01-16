@@ -12,7 +12,7 @@ func init() {
 	beego.ErrorHandler("403",page_403)
 	beego.Router("/", &controllers.IndexController{},"*:Index")
 	beego.Router("/index", &controllers.IndexController{},"POST:IndexOperate")
-	beego.Router("/index/operate", &controllers.IndexController{},"GET:InterestOperate")
+	beego.Router("/interesting/?:page", &controllers.IndexController{},"GET:InterestOperate")
 	beego.Router("/index/survey", &controllers.IndexController{},"POST:Survey")
 	beego.Router("/login", &controllers.LoginController{},"*:LoginIndex")
 	beego.Router("/timeout", &controllers.LoginController{},"*:Timeout")

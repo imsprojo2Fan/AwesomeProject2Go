@@ -46,7 +46,7 @@ func(this *UserController)Redirect()  {
 	session,_ := utils.GlobalSessions.SessionStart(this.Ctx.ResponseWriter, this.Ctx.Request)
 	this.Data["_xsrf"] = this.XSRFToken()
 	if oType=="index"{
-		this.TplName = "main/index.html"
+		this.TplName = "main/amouse.html"
 	}
 	if oType=="loginLog"{
 		this.TplName = "main/loginLog.html"

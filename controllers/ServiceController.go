@@ -14,6 +14,6 @@ func (this *ServiceController) Redirect() {
 	}
 
 	if oType=="service1st"{
-		this.TplName = "service/service1st/index.html"
+		this.TplName = "service/service1st/amouse.html"
 	}
 }
